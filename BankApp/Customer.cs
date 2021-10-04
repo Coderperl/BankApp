@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace BankApp
 {
@@ -17,20 +16,55 @@ namespace BankApp
     //BankLogic nedan(BankLogic inkluderar förslag på metoder.Komplettera
     //dessa med fler metoder om det behövs).
 
-    class Customer
+    public class Customer 
     {
-        var customer = new List<string>();
 
-        string name;
-        long pNr;
-        string Accounts;
+        public long SocialSecurityNumber { get; }
+        private string firstName;
+        private string lastname;
+        static List<SavingsAccount> listOfAccounts;
 
-        public Customer(string name, long pNr, string Accounts)
+        public static List<SavingsAccount> GetListOfAccounts()
         {
-            
-
-
+            return listOfAccounts;
         }
-
+        public string FullName => GetFirstName() + " " + GetLastName();
+        
+        public string GetFirstName()
+        {
+            return firstName;
+        }
+        public void SetFirstName(string value)
+        {
+            firstName = value;
+        }
+        public string GetLastName()
+        {
+            return lastname;
+        }
+        public void SetLastName(string value)
+        {
+            lastname = value;
+        }
+        public Customer(string FirstName, string LastName, long SocialSecurityNumber)
+        {
+            this.SetFirstName(FirstName);
+            this.SetLastName(LastName);
+            this.SocialSecurityNumber = SocialSecurityNumber;
+            listOfAccounts = new();
+        }
+        public List<string> PrintAccounts()
+        {
+            List<string> tempList = new();
+            foreach (var account in GetListOfAccounts())
+            {
+                tempList.Add(account.ShowAccount());
+            }
+            return tempList;
+        }
     }
 }
+
+
+
+
