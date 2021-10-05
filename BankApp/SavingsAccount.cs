@@ -1,4 +1,8 @@
-﻿namespace BankApp
+﻿
+
+using System;
+
+namespace BankApp
 {
 
     //● Saldo
@@ -12,21 +16,23 @@
     //Implementera metoder som säkerställer ovanstående krav i klassen
     //BankLogic nedan(BankLogic inkluderar förslag på metoder.Komplettera
     //dessa med fler metoder om det behövs).
+  
 
-    
     public class SavingsAccount
     {
-        private decimal Amount;
-        private string AccountType = "SavingsAccount";
-        private double Interest = 1;
-        private int AccountNumber;
+        //ctrl + enter för det man kan göra med klasser
+       
+        private decimal Amount { get; set; }
+        private string AccountType { get; set; }
+        private double Interest { get; set; }
+        private int AccountNumber { get; set; }
 
         public SavingsAccount(int AccountNumber)
         {
             this.AccountNumber = AccountNumber;
         }
 
-        public void DepositTansaction(decimal amount)
+        public void DepositMoney(decimal amount)
         {
             this.Amount += amount;
 
@@ -34,7 +40,7 @@
             //det gick bra annars false.
         }
 
-        public bool WithdrawTransaction(decimal amount)
+        public bool WithdrawMoney(decimal amount)
         {
             if ((this.Amount - amount)>= 0)
             {
@@ -50,7 +56,7 @@
         {
             return Interest;
         }
-        public decimal Saldo()
+        public decimal Balance()
         {
             return Amount;
         }
@@ -61,7 +67,11 @@
         }
         public int GetAccountNumber()
         {
-            return AccountNumber;
+            for (int i = 1000; i < 1010; i++)
+            {
+               
+            }
+            
         }
         public string ShowAccount()
         {

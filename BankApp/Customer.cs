@@ -21,8 +21,14 @@ namespace BankApp
 
         public long SocialSecurityNumber { get; }
         private string firstName;
-        private string lastname;
-        static List<SavingsAccount> listOfAccounts;
+        public List<SavingsAccount> Accounts { get; set; }
+
+        public string FullName => FirstName + " " + LastName;
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+
+
+
 
         public static List<SavingsAccount> GetListOfAccounts()
         {

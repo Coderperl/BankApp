@@ -1,5 +1,10 @@
 ﻿using System;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 
 namespace BankApp
 
@@ -27,7 +32,19 @@ namespace BankApp
                 //och namn)
             }
 
+            Customer Carl = new Customer("Carl", "Johansson", 19931224)
+            {
+                
+                 
 
+
+            };
+            SavingsAccount CarlsAccount = new SavingsAccount(19931224)
+            {
+                Amount;
+
+            }
+           
            
 
 
