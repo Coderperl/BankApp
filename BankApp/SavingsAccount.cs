@@ -22,14 +22,15 @@ namespace BankApp
     {
         //ctrl + enter för det man kan göra med klasser
        
-        private decimal Amount { get; set; }
-        private string AccountType { get; set; }
-        private double Interest { get; set; }
-        private int AccountNumber { get; set; }
+        public decimal Amount { get; private set; }
+        public string AccountType { get; private set; }
+        public double Interest { get; private set; }
+        public int AccountNumber { get; private set; }
 
         public SavingsAccount(int AccountNumber)
         {
             this.AccountNumber = AccountNumber;
+            //this.Amount = 
         }
 
         public void DepositMoney(decimal amount)
@@ -65,14 +66,7 @@ namespace BankApp
         {
             return (this.Amount * ((decimal)Interest) / 100);
         }
-        public int GetAccountNumber()
-        {
-            for (int i = 1000; i < 1010; i++)
-            {
-               
-            }
-            
-        }
+
         public string ShowAccount()
         {
             return AccountNumber + "\t" + AccountType + "\t" + CalculateInterest();

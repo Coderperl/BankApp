@@ -22,6 +22,13 @@ namespace BankApp
     {
 
         static List<Customer> Customers = new List<Customer>();
+        public static void PrintCustomers()
+        {
+            foreach (var i in Customers)
+            {
+                Console.WriteLine(i);
+            }
+        }
         public static void Main(string[] args)
         {
 
@@ -39,11 +46,12 @@ namespace BankApp
 
 
             };
-            SavingsAccount CarlsAccount = new SavingsAccount(19931224)
-            {
-                Amount;
+            //Flytta detta till Customer-klassen istället
+            //SavingsAccount CarlsAccount = new SavingsAccount(19931224)
+            //{
+            //    Amount;
 
-            }
+            //}
            
            
 

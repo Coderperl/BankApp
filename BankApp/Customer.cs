@@ -19,54 +19,67 @@ namespace BankApp
     public class Customer 
     {
 
-        public long SocialSecurityNumber { get; }
+        public long SocialSecurityNumber { get; private set; }
         private string firstName;
-        public List<SavingsAccount> Accounts { get; set; }
+        public static List<SavingsAccount> Accounts { get; private set; }
 
         public string FullName => FirstName + " " + LastName;
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string FirstName { get; private set; }
+        public string LastName { get; private set; }
 
 
 
 
         public static List<SavingsAccount> GetListOfAccounts()
         {
-            return listOfAccounts;
+            return Accounts;
         }
-        public string FullName => GetFirstName() + " " + GetLastName();
         
-        public string GetFirstName()
-        {
-            return firstName;
-        }
-        public void SetFirstName(string value)
-        {
-            firstName = value;
-        }
-        public string GetLastName()
-        {
-            return lastname;
-        }
-        public void SetLastName(string value)
-        {
-            lastname = value;
-        }
         public Customer(string FirstName, string LastName, long SocialSecurityNumber)
         {
-            this.SetFirstName(FirstName);
-            this.SetLastName(LastName);
+            this.FirstName  = FirstName;
+            this.LastName = LastName;
             this.SocialSecurityNumber = SocialSecurityNumber;
-            listOfAccounts = new();
+            Accounts.Add(new SavingsAccount(123));
         }
-        public List<string> PrintAccounts()
+
+        //Denna behövs inte
+        //public List<string> PrintAccounts()
+        //{
+        //    List<string> tempList = new();
+        //    foreach (var account in GetListOfAccounts())
+        //    {
+        //        tempList.Add(account.ShowAccount());
+        //    }
+        //    return tempList;
+        //}
+
+        public void AddSavingsAccount()
         {
-            List<string> tempList = new();
-            foreach (var account in GetListOfAccounts())
-            {
-                tempList.Add(account.ShowAccount());
-            }
-            return tempList;
+            //Random som skapar kontonummer
+
+            //For-loopar som kollar att kontunumret inte existerar
+            //Enklast är att köra en while-loop som loopar så länge kontonumret existerar
+            //Se pseudokod under
+
+            //While
+
+            //For i < längd på list
+            //If Accnumber == list[index].Accnumber
+            //Sätt validKonto bool falsk
+            //Breaka ur loopen
+
+            //Else
+            //Sätt validKonto som true och fortsätt loopa
+
+
+            //If validKonto = falskt: Generera nytt accountnumber och försök igen
+
+            //Annars: Lägg till nytt sparkonto
+        }
+        public override string ToString()
+        {
+            return string.Format($"");
         }
     }
 }
