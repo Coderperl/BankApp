@@ -19,15 +19,11 @@ namespace BankApp
 
     public class Customer 
     {
-
         public long SocialSecurityNumber { get; private set; }
         public string FullName => FirstName + " " + LastName;
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
         private List<SavingsAccount> Accounts { get; set; }
-
-
-
 
         public List<SavingsAccount> GetListOfAccounts()
         {
@@ -37,14 +33,10 @@ namespace BankApp
         public Customer(string FirstName,
                         string LastName,
                         long SocialSecurityNumber)
-                       
         {
-
             this.FirstName  = FirstName;
             this.LastName = LastName;
             this.SocialSecurityNumber = SocialSecurityNumber;
-           
-            
         }
 
        
