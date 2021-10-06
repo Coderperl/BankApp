@@ -18,19 +18,27 @@ namespace BankApp
     //dessa med fler metoder om det behövs).
   
 
-    public class SavingsAccount
+    public class SavingsAccount 
     {
-        //ctrl + enter för det man kan göra med klasser
+        
        
         public decimal Amount { get; private set; }
         public string AccountType { get; private set; }
         public double Interest { get; private set; }
         public int AccountNumber { get; private set; }
+        public int AccountBalance { get; private set; }
 
-        public SavingsAccount(int AccountNumber)
+        public SavingsAccount(decimal Amount,
+                              string AccountType,
+                              double Interest,
+                              int AccountNumber,
+                              int AccountBalance)
         {
             this.AccountNumber = AccountNumber;
-            //this.Amount = 
+            this.AccountType = AccountType;
+            this.AccountBalance = AccountBalance;
+            this.Amount = Amount;
+            this.Interest = Interest;
         }
 
         public void DepositMoney(decimal amount)

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace BankApp
 {
@@ -16,16 +17,14 @@ namespace BankApp
     //BankLogic nedan(BankLogic inkluderar förslag på metoder.Komplettera
     //dessa med fler metoder om det behövs).
 
-    public class Customer 
+    public class Customer : SavingsAccount
     {
 
         public long SocialSecurityNumber { get; private set; }
-        private string firstName;
-        public static List<SavingsAccount> Accounts { get; private set; }
-
         public string FullName => FirstName + " " + LastName;
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
+        public static List<SavingsAccount> Accounts { get; private set; }
 
 
 
@@ -34,28 +33,36 @@ namespace BankApp
         {
             return Accounts;
         }
-        
-        public Customer(string FirstName, string LastName, long SocialSecurityNumber)
+
+        public Customer(string FirstName,
+                        string LastName,
+                        long SocialSecurityNumber,
+                        List<SavingsAccount> Accounts)
         {
+
             this.FirstName  = FirstName;
             this.LastName = LastName;
             this.SocialSecurityNumber = SocialSecurityNumber;
-            Accounts.Add(new SavingsAccount(123));
+           
+            
         }
 
-        //Denna behövs inte
-        //public List<string> PrintAccounts()
-        //{
-        //    List<string> tempList = new();
-        //    foreach (var account in GetListOfAccounts())
-        //    {
-        //        tempList.Add(account.ShowAccount());
-        //    }
-        //    return tempList;
-        //}
-
+       
         public void AddSavingsAccount()
         {
+
+            Random random = new Random();
+            string empty = " "; 
+            
+
+            for (int i = 1000; i < 1011; i++)
+            {
+                // inte färdig
+                empty += random.Next(1, 6);
+            }
+
+            
+            
             //Random som skapar kontonummer
 
             //For-loopar som kollar att kontunumret inte existerar
