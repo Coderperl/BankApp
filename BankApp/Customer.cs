@@ -17,27 +17,27 @@ namespace BankApp
     //BankLogic nedan(BankLogic inkluderar förslag på metoder.Komplettera
     //dessa med fler metoder om det behövs).
 
-    public class Customer : SavingsAccount
+    public class Customer 
     {
 
         public long SocialSecurityNumber { get; private set; }
         public string FullName => FirstName + " " + LastName;
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
-        public static List<SavingsAccount> Accounts { get; private set; }
+        private List<SavingsAccount> Accounts { get; set; }
 
 
 
 
-        public static List<SavingsAccount> GetListOfAccounts()
+        public List<SavingsAccount> GetListOfAccounts()
         {
             return Accounts;
         }
 
         public Customer(string FirstName,
                         string LastName,
-                        long SocialSecurityNumber,
-                        List<SavingsAccount> Accounts)
+                        long SocialSecurityNumber)
+                       
         {
 
             this.FirstName  = FirstName;
@@ -52,15 +52,15 @@ namespace BankApp
         {
 
             Random random = new Random();
-            string empty = " "; 
+            string empty = "1337"; 
             
 
-            for (int i = 1000; i < 1011; i++)
+            for (int i = 1; i < 11; i++)
             {
                 // inte färdig
-                empty += random.Next(1, 6);
+                
             }
-
+            empty += random.Next(1, 6);
             
             
             //Random som skapar kontonummer
