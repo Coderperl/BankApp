@@ -20,8 +20,6 @@ namespace BankApp
 
     public class SavingsAccount 
     {
-        
-       
         public decimal Amount { get; private set; }
         public string AccountType { get; private set; }
         public double Interest { get; private set; }
