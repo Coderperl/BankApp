@@ -74,9 +74,5 @@ namespace BankApp
         }
 
     }
-    
-    
-
-   
 
 }
