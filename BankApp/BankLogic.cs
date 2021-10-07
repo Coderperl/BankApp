@@ -49,25 +49,11 @@ namespace BankApp
 
             //}
 
-            for (int i = 1000; i < 1011; i++)
-            {
-                Console.WriteLine(i);
-            }
-
            
 
 
-
-
-
         }
-        //public static bool AddCustomer(string name, long pNr)
-        //{
-        //    ● Skapar upp en ny kund med namnet name samt personnumer pNr, kunden skapas endast om det
-        //inte finns någon kund med personnummer pNr.Returnerar true om kund skapades annars
-        //returneras false.
-
-        //var newCustomer = new List<string>();
+        
 
 
         //Customers.Add(new Customer() { name = "Nils Holgersson", pNr = 9412243876 });

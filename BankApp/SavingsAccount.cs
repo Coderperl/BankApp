@@ -26,17 +26,12 @@ namespace BankApp
         public int AccountNumber { get; private set; }
         public int AccountBalance { get; private set; }
 
-        public SavingsAccount(decimal Amount,
-                              string AccountType,
-                              double Interest,
-                              int AccountNumber,
-                              int AccountBalance)
+        public SavingsAccount(int AccountNumber)
+                            
         {
             this.AccountNumber = AccountNumber;
-            this.AccountType = AccountType;
-            this.AccountBalance = AccountBalance;
-            this.Amount = Amount;
-            this.Interest = Interest;
+            AccountType = "SavingsAccount";
+            Interest = 1;
         }
 
         public void DepositMoney(decimal amount)
