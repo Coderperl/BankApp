@@ -12,7 +12,7 @@ namespace BankApp
     //konton(se ovan). Du kommer troligtvis att skapa ett antal hjälpmetoder,
     //privata metoder, men de publika metoderna som ska finnas i BankLogic är
     //följande:
-    test
+    
 
     public class BankLogic
     {
