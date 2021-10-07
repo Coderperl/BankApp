@@ -17,17 +17,31 @@ namespace BankApp
     public class BankLogic
     {
 
-        static List<Customer> Customers = new List<Customer>();
-        public static void PrintCustomers()
+        List<Customer> Customers = new List<Customer>();
+
+        public void PrintCustomers()
         {
             foreach (var i in Customers)
             {
                 Console.WriteLine(i);
             }
         }
-        public static void Main(string[] args)
+        public void AddCustomer()
+        {
+            Customers.Add(new Customer("Rolf", "Svensson", 19900340 - 5436, new List<SavingsAccount>()));
+            Customers.Add(new Customer("Carolin", "Eriksson", 19910740 - 5486, new List<SavingsAccount>()));
+            Customers.Add(new Customer("Lisa", "Johansson", 19700340 - 6836, new List<SavingsAccount>()));
+            Customers.Add(new Customer("Sandra", "Ekman", 19800890 - 5436, new List<SavingsAccount>()));
+            Customers.Add(new Customer("Carl", "Larsson", 19550120 - 5439, new List<SavingsAccount>()));
+
+        }
+
+        public void ChangeCustomerName()
         {
 
+        }
+
+    }
             //static List<string> GetCustomers()
             //{
             //    // Foreach customer in List
@@ -47,12 +61,12 @@ namespace BankApp
             //{
             //    Amount;
 
-            //}
+            ////}
 
-            for (int i = 1000; i < 1011; i++)
-            {
-                Console.WriteLine(i);
-            }
+            //for (int i = 1000; i < 1011; i++)
+            //{
+            //    Console.WriteLine(i);
+            //}
 
            
 
@@ -60,7 +74,6 @@ namespace BankApp
 
 
 
-        }
         //public static bool AddCustomer(string name, long pNr)
         //{
         //    ● Skapar upp en ny kund med namnet name samt personnumer pNr, kunden skapas endast om det
@@ -135,7 +148,3 @@ namespace BankApp
         //    //● Stänger ett konto med kontonummer accountId som tillhör kunden pNr, presentation av kontots
         //    //saldo samt ränta på pengarna ska genereras.
         //}
-    }
-
-}
-
