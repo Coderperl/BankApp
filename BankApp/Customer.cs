@@ -26,14 +26,13 @@ namespace BankApp
         public string FullName => FirstName + " " + LastName;
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
-        public List<SavingsAccount> Accounts { get; set; }
+        public List<SavingsAccount> Accounts { get; private set; }
 
         public List<SavingsAccount> GetListOfAccounts()
         {
             return Accounts;
         }
 
-        public List<SavingsAccount> SavingsAccounts = new List<SavingsAccount>();
         public List<Customer> Customers = new List<Customer>();
 
         public Customer(string FirstName,
@@ -45,40 +44,17 @@ namespace BankApp
             this.SocialSecurityNumber = SocialSecurityNumber;
             this.Accounts = new();
         }
-
-        public Customers(string FirstName,
-                string LastName,
-                long SocialSecurityNumber)
+        public void ChangeCustomerName(long SocialSecurityNumber, string newName)
         {
-            this.FirstName = FirstName;
-            this.LastName = LastName;
-            this.SocialSecurityNumber = SocialSecurityNumber;
-            this.Accounts = new();
+            foreach (Customer cust in Customers)
+            {
+                if (cust.SocialSecurityNumber == SocialSecurityNumber)
+                {
+                    cust.FirstName = newName;
+                }
+            }
         }
-
-        public void AddCustomer()
-        {
-            Customers.Add(new Customer("Rolf", "Svensson", 19900340 - 5436, new List<SavingsAccount>()));
-            Customers.Add(new Customer("Carolin", "Eriksson", 19910740 - 5486, new List<SavingsAccount>()));
-            Customers.Add(new Customer("Lisa", "Johansson", 19700340 - 6836, new List<SavingsAccount>()));
-            Customers.Add(new Customer("Sandra", "Ekman", 19800890 - 5436, new List<SavingsAccount>()));
-            Customers.Add(new Customer("Carl", "Larsson", 19550120 - 5439, new List<SavingsAccount>()));
-
-        }
-
-        public void ChangeCustomerName()
-        {
-            // Change string name in list
-            //public List<string> GetCustomer(long pNr)
-            //{
-            //    //● Returnerar en List<string> som innehåller informationen om kunden inklusive dennes konton.
-            //    //Första platsen i listan är förslagsvis reserverad för kundens namn och personnummer sedan följer
-            //    //informationen om kundens konton.
-            //}
-        }
-
-       
-        public void AddSavingsAccount(long SocialSecurtyNumber)
+        public void AddSavingsAccount(long SocialSecurityNumber)
         {
 
             if (GetListOfAccounts().Count == 0)
@@ -90,19 +66,8 @@ namespace BankApp
                 int tempId = GetListOfAccounts().Last().AccountNumber;
                 GetListOfAccounts().Add(new SavingsAccount(++tempId));
             }
-           
-            //● Skapa sparkonton till en befintlig kund, ett unikt kontonummer genereras
-            //(första kontot får nummer 1001, nästa 1002 osv.)
+ 
         }
-
-        //var newCustomer = new List<string>();
-
-        //    ● Skapar upp en ny kund med namnet name samt personnumer pNr,
-        //    kunden skapas endast om det
-        //inte finns någon kund med personnummer pNr.Returnerar true om kund skapades annars
-        //returneras false.
-
-
 
     }
 }
