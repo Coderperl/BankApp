@@ -16,7 +16,10 @@ namespace BankApp
 
     public class BankLogic
     {
-
+        public BankLogic()
+        {
+            AddCustomer();
+        }
         List<Customer> Customers = new List<Customer>();
         public void PrintCustomers()
         {
@@ -25,22 +28,46 @@ namespace BankApp
                 Console.WriteLine(i);
             }
         }
+        public List<Customer> GetAllCustomers()
+        {
+            return Customers;
+        }
         public void AddCustomer()
         {
-            Customers.Add(new Customer("Rolf", "Svensson", 19900340 - 5436));
-            Customers.Add(new Customer("Carolin", "Eriksson", 19910740 - 5486));
-            Customers.Add(new Customer("Lisa", "Johansson", 19700340 - 6836));
-            Customers.Add(new Customer("Sandra", "Ekman", 19800890 - 5436));
-            Customers.Add(new Customer("Carl", "Larsson", 19550120 - 5439));
+            Customers.Add(new Customer("Rolf", "Svensson", 19900340));
+            Customers.Add(new Customer("Carolin", "Eriksson", 19910740));
+            Customers.Add(new Customer("Lisa", "Johansson", 19700340));
+            Customers.Add(new Customer("Sandra", "Ekman", 19800810));
+            Customers.Add(new Customer("Carl", "Larsson", 19550120));
         }
-        public void GetCustomer(List<string> Customer)
+        public List<string> GetCustomer(long pNr)
         {
-            foreach (Customer cust in Customers)
+            Customer c = null;
+            List<string> returnList = new();
+            foreach (var customer in Customers)
             {
-                Console.WriteLine(Customers.Count);
+
+                if (pNr == customer.SocialSecurityNumber)
+                {
+                    c = customer;
+                }
+
             }
+            if (c != null)
+            {
+                returnList.Add($"{c.FullName} {c.SocialSecurityNumber}");
+                foreach (SavingsAccount account in c.GetListOfAccounts())
+                {
+
+                    returnList.Add(account.ShowAccount());
+                    
+                }
+               
+            }
+            return returnList;
         }
-        public void RemoveCustomer(long pNr, List<string> Customer)
+
+        public List<string> RemoveCustomer(long pNr)
         {
             //    //● Tar bort kund med personnummer pNr ur banken, alla kundens eventuella konton tas också bort
             //    //och resultatet returneras.Listan som returneras ska innehålla information om alla konton som togs
@@ -58,13 +85,30 @@ namespace BankApp
             }
             if (c != null)
             {
+                
+                returnList.Add($"{c.FullName} {c.SocialSecurityNumber}");
                 foreach (SavingsAccount account in c.GetListOfAccounts())
                 {
-                    returnList.Add(account.ShowAccount());
+                    returnList.Add(account.ShowAccount()); 
                 }
-                
+                decimal sum = 0;
+                decimal interestSum = 0;
+
+                foreach (SavingsAccount account in c.GetListOfAccounts())
+                {
+                    sum = sum + account.Balance();
+                    interestSum = interestSum + account.CalculateInterest(); 
+                }
+                string sumString = $"My total sum is : {sum}.";
+                string interestString = $"My total interest is : {interestSum}.";
+
+                returnList.Add(sumString);
+                returnList.Add(interestString);
+                c.GetListOfAccounts().Clear();
             }
 
+            return returnList;
+            
         }
 
     }

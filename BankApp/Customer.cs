@@ -32,9 +32,7 @@ namespace BankApp
         {
             return Accounts;
         }
-
         public List<Customer> Customers = new List<Customer>();
-
         public Customer(string FirstName,
                         string LastName,
                         long SocialSecurityNumber)

@@ -1,6 +1,4 @@
-﻿
-
-using System;
+﻿using System;
 
 namespace BankApp
 {
@@ -24,7 +22,7 @@ namespace BankApp
         public string AccountType { get; private set; }
         public double Interest { get; private set; }
         public int AccountNumber { get; private set; }
-        public int AccountBalance { get; private set; }
+        
 
         public SavingsAccount(int AccountNumber)
                             
@@ -32,6 +30,7 @@ namespace BankApp
             this.AccountNumber = AccountNumber;
             AccountType = "SavingsAccount";
             Interest = 1;
+            
         }
 
         public void DepositMoney(decimal amount)
@@ -70,7 +69,7 @@ namespace BankApp
 
         public string ShowAccount()
         {
-            return AccountNumber + "\t" + AccountType + "\t" + CalculateInterest();
+            return "AccountNumber: "+ AccountNumber + "\t" + "AccountType:" + AccountType+  "\n" + "Total Balance" + Balance() + "\t" + "Total interest: " + CalculateInterest();
         }
 
     }
