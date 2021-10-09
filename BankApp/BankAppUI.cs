@@ -17,20 +17,23 @@ namespace BankApp
             string userInput = "";
             Console.WriteLine("Welcome to the Bank!");
             Console.WriteLine("What can we do for you?");
-            Customer c = startBank.GetCustomer(19900340)
+            //Customer c = startBank.GetCustomer(19900340);
             //startBank.GetAllCustomers()[0].AddSavingsAccount(19900340);
-            //startBank.GetAllCustomers()[0].AddSavingsAccount(19900340);
-            //startBank.GetAllCustomers()[0].AddSavingsAccount(19900340);
-            //startBank.GetAllCustomers()[0].GetListOfAccounts()[0].DepositMoney(100000);
-            //startBank.GetAllCustomers()[0].GetListOfAccounts()[1].DepositMoney(10);
-            //startBank.GetAllCustomers()[0].GetListOfAccounts()[2].DepositMoney(25000);
-
             
+            startBank.GetAllCustomers()[1].AddSavingsAccount(19910740);
+            Console.WriteLine();
+            //startBank.GetAllCustomers()[0].GetListOfAccounts()[0].DepositMoney(100000);
+            startBank.GetAllCustomers()[1].GetListOfAccounts()[0].DepositMoney(50000);
+            startBank.GetAllCustomers()[1].GetListOfAccounts()[0].WithdrawMoney(20000);
+            Console.WriteLine();
+           
 
 
 
 
-            List<string> List = startBank.RemoveCustomer(19900340);
+
+
+            List<string> List = startBank.RemoveCustomer(19910740);
 
             foreach (string row in List)
             {

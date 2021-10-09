@@ -19,7 +19,11 @@ namespace BankApp
         public BankLogic()
         {
             AddCustomer();
+            PrintCustomers();
+            GetAllCustomers();
+            
         }
+
         List<Customer> Customers = new List<Customer>();
         public void PrintCustomers()
         {

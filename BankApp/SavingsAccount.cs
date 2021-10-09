@@ -69,7 +69,7 @@ namespace BankApp
 
         public string ShowAccount()
         {
-            return "AccountNumber: "+ AccountNumber + "\t" + "AccountType:" + AccountType+  "\n" + "Total Balance" + Balance() + "\t" + "Total interest: " + CalculateInterest();
+            return "AccountNumber: "+ AccountNumber + "\t" + "AccountType: " + AccountType+  "\n" + "Total Balance: " + Balance() + "\t" + "Total interest: " + CalculateInterest();
         }
 
     }
