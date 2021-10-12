@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace BankApp
@@ -18,9 +17,10 @@ namespace BankApp
     //BankLogic nedan(BankLogic inkluderar förslag på metoder.Komplettera
     //dessa med fler metoder om det behövs).
 
-    
-    public class Customer 
+
+    public class Customer
     {
+        public int AccountNumber { get; private set; }
 
         public long SocialSecurityNumber { get; private set; }
         public string FullName => FirstName + " " + LastName;
@@ -64,12 +64,28 @@ namespace BankApp
                 int tempId = GetListOfAccounts().Last().AccountNumber;
                 GetListOfAccounts().Add(new SavingsAccount(++tempId));
             }
- 
+
         }
-
+        public List<string> CloseAccount(long pNr, int AccountNumber, Customer customer)
+        {
+            foreach (var item in Accounts)
+            {
+                if (item.AccountNumber == AccountNumber)
+                {
+                    List<string> ClosedAccount = new List<string>();
+                    ClosedAccount.Add($"{item.Amount}");
+                    ClosedAccount.Add($"{item.CalculateInterest()}");
+                    Accounts.Remove(item);
+                    //ClosedAccount[0] för saldo
+                    //ClosedAccount[1] för ränta
+                    return ClosedAccount;
+                }
+                
+            }
+            return null;
+        }
     }
+
 }
-
-
 
 

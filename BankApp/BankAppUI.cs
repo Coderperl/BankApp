@@ -14,7 +14,7 @@ namespace BankApp
         {
             BankLogic startBank = new();
 
-            string userInput = "";
+           
             Console.WriteLine("Welcome to the Bank!");
             Console.WriteLine("What can we do for you?");
             //Customer c = startBank.GetCustomer(19900340);
@@ -33,7 +33,7 @@ namespace BankApp
 
 
 
-            List<string> List = startBank.RemoveCustomer(19910740);
+            List<string> List = startBank.RemoveCustomer(19910740); //TODO: Add customer when implemented
 
             foreach (string row in List)
             {

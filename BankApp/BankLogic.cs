@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 
 namespace BankApp
@@ -89,11 +90,11 @@ namespace BankApp
             }
             if (c != null)
             {
-                
+
                 returnList.Add($"{c.FullName} {c.SocialSecurityNumber}");
                 foreach (SavingsAccount account in c.GetListOfAccounts())
                 {
-                    returnList.Add(account.ShowAccount()); 
+                    returnList.Add(account.ShowAccount());
                 }
                 decimal sum = 0;
                 decimal interestSum = 0;
@@ -101,7 +102,7 @@ namespace BankApp
                 foreach (SavingsAccount account in c.GetListOfAccounts())
                 {
                     sum = sum + account.Balance();
-                    interestSum = interestSum + account.CalculateInterest(); 
+                    interestSum = interestSum + account.CalculateInterest();
                 }
                 string sumString = $"My total sum is : {sum}.";
                 string interestString = $"My total interest is : {interestSum}.";
@@ -112,9 +113,12 @@ namespace BankApp
             }
 
             return returnList;
-            
         }
-
+        public string CloseAccount(long pNr, int accountId, Customer customer)
+        {
+            customer.CloseAccount(pNr, accountId, customer);
+            return "";
+        }
     }
-  
 }
+  
