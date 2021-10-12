@@ -4,7 +4,6 @@ using System.Linq;
 
 namespace BankApp
 {
-
     //Klassen Customer ska hantera följande information:
     //● Kundens namn
     //● Personnummer
@@ -17,11 +16,9 @@ namespace BankApp
     //Implementera metoder som säkerställer ovanstående krav i klassen
     //BankLogic nedan(BankLogic inkluderar förslag på metoder.Komplettera
     //dessa med fler metoder om det behövs).
-
     
     public class Customer 
     {
-
         public long SocialSecurityNumber { get; private set; }
         public string FullName => FirstName + " " + LastName;
         public string FirstName { get; private set; }
@@ -32,7 +29,9 @@ namespace BankApp
         {
             return Accounts;
         }
+
         public List<Customer> Customers = new List<Customer>();
+
         public Customer(string FirstName,
                         string LastName,
                         long SocialSecurityNumber)
@@ -42,6 +41,7 @@ namespace BankApp
             this.SocialSecurityNumber = SocialSecurityNumber;
             this.Accounts = new();
         }
+
         public void ChangeCustomerName(long SocialSecurityNumber, string newName)
         {
             foreach (Customer cust in Customers)
@@ -52,9 +52,9 @@ namespace BankApp
                 }
             }
         }
+
         public void AddSavingsAccount(long SocialSecurityNumber)
         {
-
             if (GetListOfAccounts().Count == 0)
             {
                 GetListOfAccounts().Add(new SavingsAccount(1001));
@@ -64,9 +64,7 @@ namespace BankApp
                 int tempId = GetListOfAccounts().Last().AccountNumber;
                 GetListOfAccounts().Add(new SavingsAccount(++tempId));
             }
- 
         }
-
     }
 }
 

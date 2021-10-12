@@ -2,7 +2,6 @@
 
 namespace BankApp
 {
-
     //● Saldo
     //● Räntesats
     //● Kontotyp(Sparkonto)
@@ -15,17 +14,14 @@ namespace BankApp
     //BankLogic nedan(BankLogic inkluderar förslag på metoder.Komplettera
     //dessa med fler metoder om det behövs).
   
-
     public class SavingsAccount 
     {
         public decimal Amount { get; private set; }
         public string AccountType { get; private set; }
         public double Interest { get; private set; }
         public int AccountNumber { get; private set; }
-        
 
-        public SavingsAccount(int AccountNumber)
-                            
+        public SavingsAccount(int AccountNumber)        
         {
             this.AccountNumber = AccountNumber;
             AccountType = "SavingsAccount";
@@ -36,7 +32,6 @@ namespace BankApp
         public void DepositMoney(decimal amount)
         {
             this.Amount += amount;
-
             //     ● Gör en insättning på konto med kontonummer accountId som tillhör kunden pNr, returnerar true om
             //det gick bra annars false.
         }
@@ -47,16 +42,17 @@ namespace BankApp
             {
                 this.Amount -= amount;
                 return true;
-                
             }
             else return false;
             //● Gör ett uttag på konto med kontonummer accountId som tillhör kunden pNr, returnerar true om det
             //gick bra annars false
         }
+
         public double InterestRate(int amount)
         {
             return Interest;
         }
+
         public decimal Balance()
         {
             return Amount;
@@ -69,9 +65,7 @@ namespace BankApp
 
         public string ShowAccount()
         {
-            return "AccountNumber: "+ AccountNumber + "\t" + "AccountType: " + AccountType+  "\n" + "Total Balance: " + Balance() + "\t" + "Total interest: " + CalculateInterest();
+            return $"--Account Information--\nAccount Number: {AccountNumber}\nAccountType: {AccountType}\nTotal Balance: {Balance()}\nTotal interest: {CalculateInterest()}";
         }
-
     }
-
 }
