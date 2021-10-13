@@ -30,7 +30,6 @@ namespace BankApp
         {
             return SavingsAccounts;
         }
-
         public List<Customer> Customers = new List<Customer>();
 
         public Customer(
@@ -49,7 +48,7 @@ namespace BankApp
                 Console.WriteLine(i);
             }
         }
-        public void ChangeCustomerName(long SocialSecurityNumber, string newName)
+        public void ChangeCustomerName(int SocialSecurityNumber, string newName)
         {
             foreach (Customer cust in Customers)
             {
@@ -59,25 +58,21 @@ namespace BankApp
                 }
             }
         }
-
-        public void AddSavingsAccount(int SocialSecurityNumber)
+        public void AddSavingsAccount()
         {
             if (GetListOfAccounts().Count == 0)
             {
-
                 int tempId = 1000;
-                GetListOfAccounts().Add(new SavingsAccount(++tempId, SocialSecurityNumber, 0, "hej", 1));
+                GetListOfAccounts().Add(new SavingsAccount(++tempId, this.SocialSecurityNumber, 0, "hej", 1));
                 //Console.WriteLine($"TEST TEST {SocialSecurityNumber}");
             }
             else
             {
                 int tempId = GetListOfAccounts().Last().AccountNumber;
-                GetListOfAccounts().Add(new SavingsAccount(++tempId, SocialSecurityNumber, 0, "Saving Account", 1));
+                GetListOfAccounts().Add(new SavingsAccount(++tempId, this.SocialSecurityNumber, 0, "Saving Account", 1));
                 //Console.WriteLine($"TEST TEST {SocialSecurityNumber}");
             }
         }
-
-
     }
 }
 

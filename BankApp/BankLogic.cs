@@ -54,7 +54,6 @@ namespace BankApp
                 Console.WriteLine(i);
             }
         }
-
         public List<Customer> GetAllCustomers()
         {
             return Customers;
@@ -74,13 +73,17 @@ namespace BankApp
         }
         public void AddAccountsMetaData()
         {
-            SavingsAccounts.Add(new SavingsAccount(1000, 0, 9999999, "ADMIN KONTO", 1));
-            SavingsAccounts.Add(new SavingsAccount(1001, 19910740, 0, "Saving Account Metadata", 1));
-            SavingsAccounts.Add(new SavingsAccount(1002, 19700340, 0, "Saving Account Metadata", 1));
-            SavingsAccounts.Add(new SavingsAccount(1003, 19800810, 0, "Saving Account Metadata", 1));
-            SavingsAccounts.Add(new SavingsAccount(1004, 19550120, 0, "Saving Account Metadata", 1));
-        }
+            foreach (var Customer in GetAllCustomers())
+            {
+                Customer.AddSavingsAccount();
+            }
 
+            //SavingsAccounts.Add(new SavingsAccount(1000, 0, 9999999, "ADMIN KONTO", 1));
+            //SavingsAccounts.Add(new SavingsAccount(1001, 19910740, 0, "Saving Account Metadata", 1));
+            //SavingsAccounts.Add(new SavingsAccount(1002, 19700340, 0, "Saving Account Metadata", 1));
+            //SavingsAccounts.Add(new SavingsAccount(1003, 19800810, 0, "Saving Account Metadata", 1));
+            //SavingsAccounts.Add(new SavingsAccount(1004, 19550120, 0, "Saving Account Metadata", 1));
+        }
         public List<string> GetCustomer(long pNr)
         {
             Customer c = null;

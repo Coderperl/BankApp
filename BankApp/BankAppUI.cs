@@ -30,9 +30,10 @@ namespace BankApp
             //    i.PrintSavingsAccounts();
             //}
 
+            int pNr = 0;
+            Customer c = BankLogic.GetAllCustomers().Where(cust => cust.SocialSecurityNumber == pNr).First();
 
-
-
+            Console.WriteLine($"{c.FullName} {c.SocialSecurityNumber}");
 
 
             //int test = int.Parse(Console.ReadLine());
@@ -42,7 +43,7 @@ namespace BankApp
             //Console.WriteLine($"Fullname: {customerList[test].FirstName} {customerList[test].LastName}");
             //Console.WriteLine($"Socialdnwdoa {customerList[test].SocialSecurityNumber}");
 
-            while (loggedIn == false)
+            /*while (loggedIn == false)
             {
                 Console.WriteLine("Choose one of the following options.");
                 Console.WriteLine("1. Login");
@@ -145,7 +146,7 @@ namespace BankApp
                         Console.WriteLine("Helt ute i skogen1");
                         break;
                 }
-            }
+            }*/
         }
     }
 }
