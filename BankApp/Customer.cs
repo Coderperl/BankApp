@@ -53,27 +53,47 @@ namespace BankApp
                 Console.WriteLine(i);
             }
         }
-        public void ChangeCustomerName(int SocialSecurityNumber, string newName)
+        //public void ChangeCustomerName(int SocialSecurityNumber, string newName)
+        //{
+        //    foreach (Customer cust in Customers)
+        //    {
+        //        if (cust.SocialSecurityNumber == SocialSecurityNumber)
+        //        {
+        //            cust.FirstName = newName;
+        //        }
+        //    }
+        //}
+
+        ////If Social Security Number Matches with Customer it changes his/her name.
+        //public void ChangeCustomerName(int SocialSecurityNumber, string newName, string newLastName)
+
+        //{
+        //    foreach (Customer cust in Customers)
+        //    {
+        //        if (cust.SocialSecurityNumber == SocialSecurityNumber)
+        //        {
+        //            cust.FirstName = newName;
+        //            cust.LastName = newLastName;
+        //        }
+        //    }
+        //}
+        public void ChangeCustomerFirstName(int SocialSecurityNumber, string newFirstName)
         {
             foreach (Customer cust in Customers)
             {
                 if (cust.SocialSecurityNumber == SocialSecurityNumber)
                 {
-                    cust.FirstName = newName;
+                    cust.FirstName = newFirstName;
                 }
             }
         }
-
-        //If Social Security Number Matches with Customer it changes his/her name.
-        public void ChangeCustomerName(int SocialSecurityNumber, string newName, string newLastName)
-        
+        public void ChangeCustomerLastName(int SocialSecurityNumber, string newLastName)
         {
             foreach (Customer cust in Customers)
             {
                 if (cust.SocialSecurityNumber == SocialSecurityNumber)
                 {
-                    cust.FirstName = newName;
-                    cust.LastName = newLastName;
+                    cust.FirstName = newLastName;
                 }
             }
         }

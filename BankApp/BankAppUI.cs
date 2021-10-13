@@ -11,6 +11,7 @@ namespace BankApp
     {
         static void Main(string[] args)
         {
+            Console.ForegroundColor = ConsoleColor.White;
             BankLogic BankLogic = new();
             //SavingsAccount savingsAccount= new();
             
@@ -51,7 +52,7 @@ namespace BankApp
 
             while (loggedIn == false)
             {
-                Console.WriteLine("Choose one of the following options.");
+                Console.WriteLine("Choose one of the following options");
                 Console.WriteLine("1. Login");
                 Console.WriteLine("2. Create User");
                 Console.WriteLine("3. Exit");
@@ -60,13 +61,13 @@ namespace BankApp
                 {
                     case "1":
                         Console.Clear();
-                        Console.WriteLine("--Users--");
-                        Console.WriteLine(BankLogic.GetAllCustomers().Count);
+                        Console.WriteLine("--Users and their accounts--");
                         foreach (Customer i in BankLogic.GetAllCustomers())
                         {
                             long index = i.SocialSecurityNumber;
-                            Console.WriteLine($"ID: {0} Social Number: {i.SocialSecurityNumber} - Fullname: {i.FirstName} {i.LastName}");
+                            Console.WriteLine($"Social Number: {i.SocialSecurityNumber}  Name: {i.FirstName} {i.LastName}");
                             i.PrintSavingsAccounts();
+                            Console.WriteLine("");
                         }
                         Console.Write("What users do you wanna login as? ");
                         int inputSocialSecurityNumber = int.Parse(Console.ReadLine());
@@ -84,47 +85,89 @@ namespace BankApp
 
 
                         Console.WriteLine($"Logging in as {LoggedIn.FullName}..");
-                        Thread.Sleep(1000);
+                        Thread.Sleep(1500);
                         Console.Clear();
-                        Console.WriteLine("---------------------------------------");
-                        Console.WriteLine($"Name: {LoggedIn.FullName}\nSocial Security Number: {LoggedIn.SocialSecurityNumber}");
+                        Console.WriteLine($"Social Number: {LoggedIn.SocialSecurityNumber}  Name: {LoggedIn.FullName}");
                         Console.WriteLine(sa.ShowAccount()); 
                         //Console.WriteLine($"Account Number:  {LoggedIn.GetListOfAccounts().First().AccountNumber} Type: {LoggedIn.GetListOfAccounts().First().AccountType}\nBalance: {LoggedIn.GetListOfAccounts().First().AccountBalance}");
                         Console.WriteLine("");
                         Console.WriteLine("Manage Your Account");
-                        Console.WriteLine("1. Make a Deposit\n2. Make a Withdrawal\n3. Change Name\n4. Close Account\n5. Return to Menu");
+                        Console.WriteLine("1. Make a Deposit\n2. Make a Withdrawal\n3. Change Name\n4. Close Bank Accounts\n5. Return to Menu");
+                        Console.Write("\nWhat is your choice? ");
                         userInput = Console.ReadLine();
                         switch (userInput)
                         {
                             case "1":
-                                Console.WriteLine($"Current Balance: {LoggedIn.GetListOfAccounts().First().ShowAccount()}");
-                                Console.WriteLine("How much do you wanna deposit?");
+                                //Console.WriteLine($"Current Balance: {LoggedIn.GetListOfAccounts().First().ShowAccount()}");
+                                //Console.WriteLine($"\nSocial Number: {LoggedIn.SocialSecurityNumber}  Name: {LoggedIn.FullName}");
+                                //Console.WriteLine(sa.ShowAccount());
+                                Console.Write("How much do you wanna deposit? ");
                                 int deposit = int.Parse(Console.ReadLine());
                                 sa.DepositMoney(deposit);
-                                
 
-
-                               
-                                Console.WriteLine($"Added {deposit} into account {LoggedIn.GetListOfAccounts().First().ShowAccount()} which makes it now have a total of {LoggedIn.GetListOfAccounts().First().ShowAccount()}");
+                                //Console.WriteLine($"Current dwadwadBalance: {LoggedIn.GetListOfAccounts().First().AccountBalance}");
+                                Thread.Sleep(1500);
+                                Console.Clear();
+                                Console.WriteLine($"Added {deposit} into account {LoggedIn.GetListOfAccounts().First().AccountNumber} which makes it now have a total of {LoggedIn.GetListOfAccounts().First().AccountBalance}\n");
                                 //Vi kan lägga in pengar men värdena sparar inte i SavingsAccount som går att återhämta
 
                                 //Console.WriteLine(SavingsAccount.ShowAccount());
                                 //Console.WriteLine($"Added {input} into account {SavingsAccounts[inputSocialSecurityNumber].AccountNumber} which makes it now have a total of {SavingsAccounts[inputSocialSecurityNumber].AccountBalance + input}");
                                 break;
                             case "2":
-                                Console.WriteLine($"Current Balance: {SavingsAccounts[inputSocialSecurityNumber].AccountBalance}");
-                                Console.WriteLine("How much do you wanna Withdraw?");
+                                Console.Write("How much do you wanna withdrawal? ");
                                 int withdrawal = int.Parse(Console.ReadLine());
+                                sa.WithdrawMoney(withdrawal);
 
-                                //SavingsAccounts.Add(new SavingsAccount(SavingsAccounts[inputSocialSecurityNumber].AccountNumber, Customers[inputSocialSecurityNumber].SocialSecurityNumber, SavingsAccounts[inputSocialSecurityNumber].AccountBalance + withdrawal, "Saving Account Metadata", 1));
-                                Console.WriteLine($"Added {withdrawal} into account {SavingsAccounts[inputSocialSecurityNumber].AccountNumber} which makes it now have a total of {SavingsAccounts[inputSocialSecurityNumber].AccountBalance - withdrawal}");
-
+                                //Console.WriteLine($"Current dwadwadBalance: {LoggedIn.GetListOfAccounts().First().AccountBalance}");
+                                Thread.Sleep(1500);
+                                Console.Clear();
+                                Console.WriteLine($"Added {withdrawal} into account {LoggedIn.GetListOfAccounts().First().AccountNumber} which makes it now have a total of {LoggedIn.GetListOfAccounts().First().AccountBalance}\n");
                                 //Vi kan lägga in pengar men värdena sparar inte i SavingsAccount som går att återhämta
 
+                                //Console.WriteLine(SavingsAccount.ShowAccount());
+                                //Console.WriteLine($"Added {input} into account {SavingsAccounts[inputSocialSecurityNumber].AccountNumber} which makes it now have a total of {SavingsAccounts[inputSocialSecurityNumber].AccountBalance + input}");
                                 break;
                             case "3":
+                                Console.WriteLine("\nThese are the names you can change");
+                                Console.WriteLine("1. First Name");
+                                Console.WriteLine("2. Last Name");
+                                Console.Write("\nWhat is your choice? ");
+                                int inputchangename = int.Parse(Console.ReadLine());
+                                if (inputchangename == 1)
+                                {
+                                    Console.Write("What do you wanna change your First Name to? ");
+                                    string changefirstname = Console.ReadLine();
+                                    //////////////////////////////////////////////////FUNKER EJ
+                                    BankLogic.GetAllCustomers().First().ChangeCustomerFirstName(inputSocialSecurityNumber, changefirstname);
+                                    Console.WriteLine($"{LoggedIn.FullName}");
+                                }
+                                else if (inputchangename == 2)
+                                {
+                                    Console.Write("What do you wanna change your First Name to? ");
+                                    string changelastname = Console.ReadLine();
+                                    //////////////////////////////////////////////////FUNKER EJ
+                                    BankLogic.GetAllCustomers().First().ChangeCustomerLastName(inputSocialSecurityNumber, changelastname);
+                                    Console.WriteLine($"{LoggedIn.FullName}");
+                                }
+
+                                //Console.WriteLine($"Current dwadwadBalance: {LoggedIn.GetListOfAccounts().First().AccountBalance}");
+                                //Thread.Sleep(1500);
+                                //Console.WriteLine($"Added {withdrawal} into account {LoggedIn.GetListOfAccounts().First().AccountNumber} which makes it now have a total of {LoggedIn.GetListOfAccounts().First().AccountBalance}\n");
+                                //Vi kan lägga in pengar men värdena sparar inte i SavingsAccount som går att återhämta
+
+                                //Console.WriteLine(SavingsAccount.ShowAccount());
+                                //Console.WriteLine($"Added {input} into account {SavingsAccounts[inputSocialSecurityNumber].AccountNumber} which makes it now have a total of {SavingsAccounts[inputSocialSecurityNumber].AccountBalance + input}");
                                 break;
                             case "4":
+                                ///////////////////////////////////////////////////foreach som kollar 
+                                Console.WriteLine("\nThese are your currently bank accounts");
+                                Console.WriteLine("1. ??");
+                                Console.WriteLine("2. ??");
+                                Console.Write("\nWhich do you wanna close? ");
+                                int inputcloseaccount = int.Parse(Console.ReadLine());
+
+                                Console.WriteLine($"Closed your bank account with id {"??"} into account {LoggedIn.GetListOfAccounts().First().AccountNumber} which makes it now have a total of {LoggedIn.GetListOfAccounts().First().AccountBalance}\n");
                                 break;
                             case "5":
                                 Console.Clear();

@@ -71,12 +71,12 @@ namespace BankApp
         // * Amount and then return the value.
         public string ShowAccount()
         {
-            return $"-- Account Info-- Account Number: {AccountNumber}\nAccountType: {AccountType} - Total Balance: {AccountBalance}\nTotal interest: {CalculateInterest()}";
+            return $"Account Number: {AccountNumber}     Account Type: {AccountType}\nCurrent Balance: {AccountBalance}       Total Interest: {CalculateInterest()}";
             //return $"--Account Information--\nAccount Number: {AccountNumber}\nAccountType: {AccountType}\nTotal Balance: {AccountBalance}\nTotal interest: {CalculateInterest()}";
         }
         public override string ToString()
         {
-            return string.Format($"-- Account Info-- Account Number: {AccountNumber} - AccountType: {AccountType} - Total Balance: {AccountBalance} - Total interest: {CalculateInterest()}");
+            return string.Format($"Account Number: {AccountNumber} | Account Type: {AccountType} | Current Balance: {AccountBalance} | Total Interest: {CalculateInterest()}");
         }
     }
 
