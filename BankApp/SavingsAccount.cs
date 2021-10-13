@@ -8,17 +8,22 @@ namespace BankApp
         // class SavingsAccount 
     {
         public int AccountNumber { get; private set; }
+        public string AccountType { get; set; }
+        public int Interest { get; set; }
+        public int AccountBalance { get; set; }
         //Get och set metodes! parameters Amount, AccountType, Interest och AccountNumber
+        
         public SavingsAccount(int AccountNumber)        
         { 
             this.AccountNumber = AccountNumber;
-            AccountType = "SavingsAccount";
-            Interest = 1;
+            this.AccountType = "SavingsAccount";
+            this.Interest = 1;
             // interest 1%
         }
+       
         // The constructor in the class SavingsAccount
 
-        public int DepositMoney(int accountNumber, int accountBalance)
+        public int DepositMoney(int accountBalance)
         {
             return AccountBalance + accountBalance;
 
@@ -58,7 +63,7 @@ namespace BankApp
         {
             return (AccountBalance * ((decimal)Interest) / 100);
         }
-        public int GetAccountNumber(int accountNumber)
+        public int GetAccountNumber(int AccountNumber)
         {
             return AccountNumber;
         }

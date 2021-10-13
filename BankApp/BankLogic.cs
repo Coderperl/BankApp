@@ -17,6 +17,7 @@ namespace BankApp
         }
 
         List<Customer> Customers = new List<Customer>();
+        
         // public void PrintCustomers()
         // The method prints all the values for Customers, in the list of customers.
         public void PrintCustomers()
@@ -46,7 +47,7 @@ namespace BankApp
 
         // public List<string> GetCustomer(long pNr)
         // This method fetches a customer from the list of Customers together with the values it has of its account. 
-        public List<string> GetCustomer(long pNr)
+        public List<string> GetCustomer(int pNr)
         {
             Customer c = null;
             List<string> returnList = new();
@@ -110,43 +111,23 @@ namespace BankApp
         }
         // public string CloseAccount(long pNr, int AccountNumber, Customer customer)
         // This method closes an account to a specific customer. 
-        public string CloseAccount(long pNr, int AccountNumber, Customer customer)
+        public List<string> CloseAccount(Customer customer, int AccountNumber)
         {
-            customer.CloseAccount(pNr, AccountNumber, customer);
-            return "";
-            var lastAcc = SavingsAccounts.Last();
-            return lastAcc.AccountNumber;
-        }
-        public void PrintCustomers()
-        {
-            foreach (var i in Customers)
-            {
-                Console.WriteLine(i);
-            }
+            return customer.CloseAccount(AccountNumber);
+
         }
         public void PrintAccounts()
         {
-            foreach (var i in SavingsAccounts)
+            foreach (Customer cust in Customers)
             {
-                Console.WriteLine(i);
+                foreach (SavingsAccount account in cust.GetListOfAccounts())
+                {
+                    Console.WriteLine(account.ShowAccount());
+                }
             }
         }
-        public List<Customer> GetAllCustomers()
-        {
-            return Customers;
-        }
-        public List<SavingsAccount> GetAllAccounts()
-        {
-            return SavingsAccounts;
-        }
-        public void AddCustomersMetaData()
-        {
-            Customers.Add(new Customer(0, "Rolf", "Svensson"));
-            Customers.Add(new Customer(19910740, "Carolin", "Eriksson"));
-            Customers.Add(new Customer(19700340, "Lisa", "Johansson"));
-            Customers.Add(new Customer(19800810, "Sandra", "Ekman"));
-            Customers.Add(new Customer(19550120, "Carl", "Larsson"));
-        }
+      
+    
         public void AddAccountsMetaData()
         {
             foreach (var Customer in GetAllCustomers())
@@ -160,27 +141,7 @@ namespace BankApp
             //SavingsAccounts.Add(new SavingsAccount(1003, 19800810, 0, "Saving Account Metadata", 1));
             //SavingsAccounts.Add(new SavingsAccount(1004, 19550120, 0, "Saving Account Metadata", 1));
         }
-        public List<string> GetCustomer(long pNr)
-        {
-            Customer c = null;
-            List<string> returnList = new();
-            foreach (var customer in Customers)
-            {
-                if (pNr == customer.SocialSecurityNumber)
-                {
-                    c = customer;
-                }
-            }
-            if (c != null)
-            {
-                returnList.Add($"{c.FullName} {c.SocialSecurityNumber}");
-                foreach (SavingsAccount account in c.GetListOfAccounts())
-                {
-                    returnList.Add(account.ShowAccount());
-                }
-            }
-            return returnList;
-        }
+
     }
 }
 

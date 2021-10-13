@@ -12,15 +12,17 @@ namespace BankApp
         static void Main(string[] args)
         {
             BankLogic BankLogic = new();
-            SavingsAccount SavingsAccount = new();
+            //SavingsAccount savingsAccount= new();
             
             //SavingsAccount = SavingsAccount = new();
 
             bool loggedIn = false;
             string userInput = "";
+            BankLogic.AddAccountsMetaData();
+           
 
-            List<Customer> Customers = new List<Customer>(BankLogic.GetAllCustomers());
-            List<SavingsAccount> SavingsAccounts = new List<SavingsAccount>(BankLogic.GetAllAccounts());
+            //List<Customer> Customers = BankLogic.GetAllCustomers();
+            List<SavingsAccount> SavingsAccounts = new List<SavingsAccount>();
             //foreach (Customer i in Customers)
             //{
             //    int index = i.SocialSecurityNumber;
@@ -30,10 +32,10 @@ namespace BankApp
             //    i.PrintSavingsAccounts();
             //}
 
-            int pNr = 0;
-            Customer c = BankLogic.GetAllCustomers().Where(cust => cust.SocialSecurityNumber == pNr).First();
+            //int pNr = 19900340;
+            //Customer c = BankLogic.GetAllCustomers().Where(cust => cust.SocialSecurityNumber == pNr).First();
 
-            Console.WriteLine($"{c.FullName} {c.SocialSecurityNumber}");
+            //Console.WriteLine($"{c.FullName} {c.SocialSecurityNumber}");
 
             //foreach (string row in List)
             //{
@@ -47,7 +49,7 @@ namespace BankApp
             //Console.WriteLine($"Fullname: {customerList[test].FirstName} {customerList[test].LastName}");
             //Console.WriteLine($"Socialdnwdoa {customerList[test].SocialSecurityNumber}");
 
-            /*while (loggedIn == false)
+            while (loggedIn == false)
             {
                 Console.WriteLine("Choose one of the following options.");
                 Console.WriteLine("1. Login");
@@ -59,26 +61,32 @@ namespace BankApp
                     case "1":
                         Console.Clear();
                         Console.WriteLine("--Users--");
-                        foreach (Customer i in Customers)
+                        Console.WriteLine(BankLogic.GetAllCustomers().Count);
+                        foreach (Customer i in BankLogic.GetAllCustomers())
                         {
                             long index = i.SocialSecurityNumber;
                             Console.WriteLine($"ID: {0} Social Number: {i.SocialSecurityNumber} - Fullname: {i.FirstName} {i.LastName}");
                             i.PrintSavingsAccounts();
                         }
-                        foreach (SavingsAccount i in SavingsAccounts)
-                        {
-                            long index = i.AccountNumber;
-                            Console.WriteLine($"ID: {0} Account Number: {i.AccountNumber} - {i.AccountType} - {i.AccountNumberParent}");
-                            //i.PrintSavingsAccounts();
-                        }
                         Console.Write("What users do you wanna login as? ");
                         int inputSocialSecurityNumber = int.Parse(Console.ReadLine());
-                        Console.WriteLine($"Logging in as {Customers[inputSocialSecurityNumber].FullName}..");
+                        Customer LoggedIn = null;
+                        foreach (Customer i in BankLogic.GetAllCustomers())
+                        {
+                            if (i.SocialSecurityNumber == inputSocialSecurityNumber)
+                            {
+                                LoggedIn = i;
+                            }
+                        }
+
+
+                        Console.WriteLine($"Logging in as {LoggedIn.FullName}..");
                         Thread.Sleep(1000);
                         Console.Clear();
                         Console.WriteLine("---------------------------------------");
-                        Console.WriteLine($"Name: {Customers[inputSocialSecurityNumber].FullName}\nSocial Security Number: {Customers[inputSocialSecurityNumber].SocialSecurityNumber}");
-                        Console.WriteLine($"Account Number: {SavingsAccounts[inputSocialSecurityNumber].AccountNumber} Type: {SavingsAccounts[inputSocialSecurityNumber].AccountType}\nBalance: {SavingsAccounts[inputSocialSecurityNumber].AccountBalance}");
+                        Console.WriteLine($"Name: {LoggedIn.FullName}\nSocial Security Number: {LoggedIn.SocialSecurityNumber}");
+                        Console.WriteLine(LoggedIn.GetListOfAccounts().First().ShowAccount()); 
+                        //Console.WriteLine($"Account Number:  {LoggedIn.GetListOfAccounts().First().AccountNumber} Type: {LoggedIn.GetListOfAccounts().First().AccountType}\nBalance: {LoggedIn.GetListOfAccounts().First().AccountBalance}");
                         Console.WriteLine("");
                         Console.WriteLine("Manage Your Account");
                         Console.WriteLine("1. Make a Deposit\n2. Make a Withdrawal\n3. Change Name\n4. Close Account\n5. Return to Menu");
@@ -86,12 +94,12 @@ namespace BankApp
                         switch (userInput)
                         {
                             case "1":
-                                Console.WriteLine($"Current Balance: {SavingsAccounts[inputSocialSecurityNumber].AccountBalance}");
+                                Console.WriteLine($"Current Balance: {LoggedIn.GetListOfAccounts().First().ShowAccount()}");
                                 Console.WriteLine("How much do you wanna deposit?");
                                 int deposit = int.Parse(Console.ReadLine());
 
-                                SavingsAccounts.Add(new SavingsAccount(SavingsAccounts[inputSocialSecurityNumber].AccountNumber, Customers[inputSocialSecurityNumber].SocialSecurityNumber, SavingsAccounts[inputSocialSecurityNumber].AccountBalance + deposit, "Saving Account Metadata", 1));
-                                Console.WriteLine($"Added {deposit} into account {SavingsAccounts[inputSocialSecurityNumber].AccountNumber} which makes it now have a total of {SavingsAccounts[inputSocialSecurityNumber].AccountBalance + deposit}");
+                               
+                                Console.WriteLine($"Added {deposit} into account {LoggedIn.GetListOfAccounts().First().ShowAccount()} which makes it now have a total of {LoggedIn.GetListOfAccounts().First().ShowAccount()}");
                                 //Vi kan lägga in pengar men värdena sparar inte i SavingsAccount som går att återhämta
 
                                 //Console.WriteLine(SavingsAccount.ShowAccount());
@@ -99,10 +107,10 @@ namespace BankApp
                                 break;
                             case "2":
                                 Console.WriteLine($"Current Balance: {SavingsAccounts[inputSocialSecurityNumber].AccountBalance}");
-                                Console.WriteLine("How much do you wanna Withdrawal?");
+                                Console.WriteLine("How much do you wanna Withdraw?");
                                 int withdrawal = int.Parse(Console.ReadLine());
 
-                                SavingsAccounts.Add(new SavingsAccount(SavingsAccounts[inputSocialSecurityNumber].AccountNumber, Customers[inputSocialSecurityNumber].SocialSecurityNumber, SavingsAccounts[inputSocialSecurityNumber].AccountBalance + withdrawal, "Saving Account Metadata", 1));
+                                //SavingsAccounts.Add(new SavingsAccount(SavingsAccounts[inputSocialSecurityNumber].AccountNumber, Customers[inputSocialSecurityNumber].SocialSecurityNumber, SavingsAccounts[inputSocialSecurityNumber].AccountBalance + withdrawal, "Saving Account Metadata", 1));
                                 Console.WriteLine($"Added {withdrawal} into account {SavingsAccounts[inputSocialSecurityNumber].AccountNumber} which makes it now have a total of {SavingsAccounts[inputSocialSecurityNumber].AccountBalance - withdrawal}");
 
                                 //Vi kan lägga in pengar men värdena sparar inte i SavingsAccount som går att återhämta
@@ -127,12 +135,12 @@ namespace BankApp
                         string createUserLastName = Console.ReadLine();
                         Console.WriteLine("Social Security Number: ");
                         int createUserSocialSecurityNumber = int.Parse(Console.ReadLine());
-                        Customers.Add(new Customer(createUserSocialSecurityNumber, createUserFirstName, createUserLastName));
-                        SavingsAccounts.Add(new SavingsAccount(BankLogic.CreateAccNum()+1, createUserSocialSecurityNumber, 66000, "hej", 5));
+                        BankLogic.GetAllCustomers().Add(new Customer(createUserFirstName, createUserLastName, createUserSocialSecurityNumber));
+                        //SavingsAccounts.Add(new SavingsAccount(BankLogic.CreateAccNum()+1, createUserSocialSecurityNumber, 66000, "hej", 5));
                         //SavingsAccount.Add(new SavingAccount(55, createUserFirstName, createUserLastName, createUserSocialSecurityNumber));
                         Console.Clear();
                         Console.WriteLine("Loading Currenty Users..");
-                        foreach (Customer i in Customers)
+                        foreach (Customer i in BankLogic.GetAllCustomers())
                         {
                             int index = i.SocialSecurityNumber;
                             //i.AddSavingsAccount(index);
@@ -150,7 +158,7 @@ namespace BankApp
                         Console.WriteLine("Helt ute i skogen1");
                         break;
                 }
-            }*/
+            }
         }
     }
 }
