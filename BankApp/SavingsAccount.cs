@@ -26,7 +26,6 @@ namespace BankApp
             this.AccountNumber = AccountNumber;
             AccountType = "SavingsAccount";
             Interest = 1;
-            
         }
 
         public void DepositMoney(decimal amount)
@@ -48,7 +47,7 @@ namespace BankApp
             //gick bra annars false
         }
 
-        public double InterestRate(int amount)
+        public double InterestRate()
         {
             return Interest;
         }

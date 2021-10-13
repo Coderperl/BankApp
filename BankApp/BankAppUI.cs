@@ -26,51 +26,51 @@ namespace BankApp
             Console.WriteLine();
                    List<string> List = startBank.RemoveCustomer(19910740); //TODO: Add customer when implemented
 
-            List<string> List = startBank.RemoveCustomer(19910740);
+            //List<string> List = startBank.RemoveCustomer(19910740);
 
 
-            foreach (string row in List)
-            {
-                Console.WriteLine(row);
-            }
+            //foreach (string row in List)
+            //{
+            //    Console.WriteLine(row);
+            //}
 
-            while (userInput!= "7")
-            {
-                Console.WriteLine();
-                Console.WriteLine("Choose one of the following options.");
-                Console.WriteLine("1. ");
-                Console.WriteLine("2. ");
-                Console.WriteLine("3. ");
-                Console.WriteLine("4. ");
-                Console.WriteLine("5. ");
-                Console.WriteLine("6. ");
-                Console.WriteLine("7. ");
-                Console.WriteLine("0. Exit the app.");
+            //while (userInput!= "7")
+            //{
+            //    Console.WriteLine();
+            //    Console.WriteLine("Choose one of the following options.");
+            //    Console.WriteLine("1. ");
+            //    Console.WriteLine("2. ");
+            //    Console.WriteLine("3. ");
+            //    Console.WriteLine("4. ");
+            //    Console.WriteLine("5. ");
+            //    Console.WriteLine("6. ");
+            //    Console.WriteLine("7. ");
+            //    Console.WriteLine("0. Exit the app.");
 
-                userInput = Console.ReadLine();
-                switch (userInput)
-                {
-                    case "1":
-                        break;
-                    case "2":
-                        break;
-                    case "3":
-                        break;
-                    case "4":
-                        break;
-                    case "5":
-                        break;
-                    case "6":
-                        break;
-                    case "7":
-                        break;
-                    case "0":
-                        break;
-                    default:
-                        Console.WriteLine("You chose an Unvalid Input, Please try again. ");
-                        break;
+            //    userInput = Console.ReadLine();
+            //    switch (userInput)
+            //    {
+            //        case "1":
+            //            break;
+            //        case "2":
+            //            break;
+            //        case "3":
+            //            break;
+            //        case "4":
+            //            break;
+            //        case "5":
+            //            break;
+            //        case "6":
+            //            break;
+            //        case "7":
+            //            break;
+            //        case "0":
+            //            break;
+            //        default:
+            //            Console.WriteLine("You chose an Unvalid Input, Please try again. ");
+            //            break;
                 }
             }
         }
-    }
-}
+
+

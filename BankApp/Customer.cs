@@ -21,6 +21,7 @@ namespace BankApp
    
     public class Customer 
     {
+
         public long SocialSecurityNumber { get; private set; }
         public string FullName => FirstName + " " + LastName;
         public string FirstName { get; private set; }
@@ -44,13 +45,14 @@ namespace BankApp
             this.Accounts = new();
         }
 
-        public void ChangeCustomerName(long SocialSecurityNumber, string newName)
+        public void ChangeCustomerName(long SocialSecurityNumber, string newName, string newLastName)
         {
             foreach (Customer cust in Customers)
             {
                 if (cust.SocialSecurityNumber == SocialSecurityNumber)
                 {
                     cust.FirstName = newName;
+                    cust.LastName = newLastName;
                 }
             }
         }
