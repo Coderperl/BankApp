@@ -3,7 +3,6 @@ using System.Linq;
 
 namespace BankApp
 {
-
     //Klassen Customer ska hantera följande information:
     //● Kundens namn
     //● Personnummer
@@ -18,9 +17,15 @@ namespace BankApp
     //dessa med fler metoder om det behövs).
 
 
+
     public class Customer
     {
         public int AccountNumber { get; private set; }
+
+
+    
+    public class Customer 
+    {
 
         public long SocialSecurityNumber { get; private set; }
         public string FullName => FirstName + " " + LastName;
@@ -32,7 +37,9 @@ namespace BankApp
         {
             return Accounts;
         }
+
         public List<Customer> Customers = new List<Customer>();
+
         public Customer(string FirstName,
                         string LastName,
                         long SocialSecurityNumber)
@@ -42,6 +49,7 @@ namespace BankApp
             this.SocialSecurityNumber = SocialSecurityNumber;
             this.Accounts = new();
         }
+
         public void ChangeCustomerName(long SocialSecurityNumber, string newName)
         {
             foreach (Customer cust in Customers)
@@ -52,9 +60,9 @@ namespace BankApp
                 }
             }
         }
+
         public void AddSavingsAccount(long SocialSecurityNumber)
         {
-
             if (GetListOfAccounts().Count == 0)
             {
                 GetListOfAccounts().Add(new SavingsAccount(1001));
@@ -64,6 +72,7 @@ namespace BankApp
                 int tempId = GetListOfAccounts().Last().AccountNumber;
                 GetListOfAccounts().Add(new SavingsAccount(++tempId));
             }
+
 
         }
         public List<string> CloseAccount(long pNr, int AccountNumber, Customer customer)
@@ -80,7 +89,6 @@ namespace BankApp
                     //ClosedAccount[1] för ränta
                     return ClosedAccount;
                 }
-                
             }
             return null;
         }

@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace BankApp
 {
     class BankAppUI 
     {
-
         static void Main(string[] args)
         {
             BankLogic startBank = new();
@@ -26,27 +24,21 @@ namespace BankApp
             startBank.GetAllCustomers()[1].GetListOfAccounts()[0].DepositMoney(50000);
             startBank.GetAllCustomers()[1].GetListOfAccounts()[0].WithdrawMoney(20000);
             Console.WriteLine();
-           
+                   List<string> List = startBank.RemoveCustomer(19910740); //TODO: Add customer when implemented
 
+            List<string> List = startBank.RemoveCustomer(19910740);
 
-
-
-
-
-            List<string> List = startBank.RemoveCustomer(19910740); //TODO: Add customer when implemented
 
             foreach (string row in List)
             {
                 Console.WriteLine(row);
             }
 
-
-           /* while (userInput!= "7")
+            while (userInput!= "7")
             {
                 Console.WriteLine();
-
                 Console.WriteLine("Choose one of the following options.");
-                Console.WriteLine($"1 ");
+                Console.WriteLine("1. ");
                 Console.WriteLine("2. ");
                 Console.WriteLine("3. ");
                 Console.WriteLine("4. ");
@@ -59,7 +51,6 @@ namespace BankApp
                 switch (userInput)
                 {
                     case "1":
-                        
                         break;
                     case "2":
                         break;
@@ -75,26 +66,11 @@ namespace BankApp
                         break;
                     case "0":
                         break;
-
                     default:
                         Console.WriteLine("You chose an Unvalid Input, Please try again. ");
                         break;
                 }
-
-            }*/
-
-            
-
-
-
-
-
-
+            }
         }
-
-
-
-
-
     }
 }
