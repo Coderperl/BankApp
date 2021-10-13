@@ -29,14 +29,13 @@ namespace BankApp
                 i.AddSavingsAccount(index);
                 Console.WriteLine("--User--");
                 Console.WriteLine($"Social Number: {i.SocialSecurityNumber} - Fullname: {i.FirstName} {i.LastName}");
-                Console.WriteLine($"Social Number: {i.SocialSecurityNumber} - Fullname: {i.FirstName} {i.LastName}");
                 i.PrintSavingsAccounts();
             }
 
             foreach (SavingsAccount i in SavingsAccounts)
             {
                 int index = i.AccountNumberParent;
-                Console.WriteLine($"Social Number: {i.AccountNumberParent[1]} - Fullname: ");
+                Console.WriteLine($"Social Number: {i.AccountNumberParent} - Fullname: ");
             }
 
 

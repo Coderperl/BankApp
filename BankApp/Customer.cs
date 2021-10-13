@@ -24,7 +24,16 @@ namespace BankApp
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
         //public List<SavingsAccount> SavingAccounts { get; private set; }
-        private List<SavingsAccount> SavingAccounts = new List<SavingsAccount>();
+        List<SavingsAccount> SavingAccounts = new List<SavingsAccount>();
+
+
+
+
+
+
+
+
+
 
         public List<SavingsAccount> GetListOfAccounts()
         {
