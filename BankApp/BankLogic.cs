@@ -93,7 +93,6 @@ namespace BankApp
                     c = customer;
                 }
             }
-
             if (c != null)
             {
                 returnList.Add($"{c.FullName} {c.SocialSecurityNumber}");
@@ -104,7 +103,6 @@ namespace BankApp
             }
             return returnList;
         }
-
         public List<string> RemoveCustomer(long pNr)
         {
             //    //? Tar bort kund med personnummer pNr ur banken, alla kundens eventuella konton tas också bort
@@ -119,7 +117,6 @@ namespace BankApp
                     c = customer;
                 }
             }
-
             if (c != null)
             {
                 returnList.Add($"{c.FullName} {c.SocialSecurityNumber}");
