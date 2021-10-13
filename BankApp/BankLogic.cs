@@ -114,6 +114,72 @@ namespace BankApp
         {
             customer.CloseAccount(pNr, AccountNumber, customer);
             return "";
+            var lastAcc = SavingsAccounts.Last();
+            return lastAcc.AccountNumber;
+        }
+        public void PrintCustomers()
+        {
+            foreach (var i in Customers)
+            {
+                Console.WriteLine(i);
+            }
+        }
+        public void PrintAccounts()
+        {
+            foreach (var i in SavingsAccounts)
+            {
+                Console.WriteLine(i);
+            }
+        }
+        public List<Customer> GetAllCustomers()
+        {
+            return Customers;
+        }
+        public List<SavingsAccount> GetAllAccounts()
+        {
+            return SavingsAccounts;
+        }
+        public void AddCustomersMetaData()
+        {
+            Customers.Add(new Customer(0, "Rolf", "Svensson"));
+            Customers.Add(new Customer(19910740, "Carolin", "Eriksson"));
+            Customers.Add(new Customer(19700340, "Lisa", "Johansson"));
+            Customers.Add(new Customer(19800810, "Sandra", "Ekman"));
+            Customers.Add(new Customer(19550120, "Carl", "Larsson"));
+        }
+        public void AddAccountsMetaData()
+        {
+            foreach (var Customer in GetAllCustomers())
+            {
+                Customer.AddSavingsAccount();
+            }
+
+            //SavingsAccounts.Add(new SavingsAccount(1000, 0, 9999999, "ADMIN KONTO", 1));
+            //SavingsAccounts.Add(new SavingsAccount(1001, 19910740, 0, "Saving Account Metadata", 1));
+            //SavingsAccounts.Add(new SavingsAccount(1002, 19700340, 0, "Saving Account Metadata", 1));
+            //SavingsAccounts.Add(new SavingsAccount(1003, 19800810, 0, "Saving Account Metadata", 1));
+            //SavingsAccounts.Add(new SavingsAccount(1004, 19550120, 0, "Saving Account Metadata", 1));
+        }
+        public List<string> GetCustomer(long pNr)
+        {
+            Customer c = null;
+            List<string> returnList = new();
+            foreach (var customer in Customers)
+            {
+                if (pNr == customer.SocialSecurityNumber)
+                {
+                    c = customer;
+                }
+            }
+            if (c != null)
+            {
+                returnList.Add($"{c.FullName} {c.SocialSecurityNumber}");
+                foreach (SavingsAccount account in c.GetListOfAccounts())
+                {
+                    returnList.Add(account.ShowAccount());
+                }
+            }
+            return returnList;
         }
     }
 }

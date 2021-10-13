@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace BankApp
 {
@@ -6,9 +7,6 @@ namespace BankApp
     public class SavingsAccount
         // class SavingsAccount 
     {
-        public decimal Amount { get; private set; }
-        public string AccountType { get; private set; }
-        public double Interest { get; private set; }
         public int AccountNumber { get; private set; }
         //Get och set metodes! parameters Amount, AccountType, Interest och AccountNumber
         public SavingsAccount(int AccountNumber)        
@@ -20,20 +18,20 @@ namespace BankApp
         }
         // The constructor in the class SavingsAccount
 
-        public void DepositMoney(decimal amount)
+        public int DepositMoney(int accountNumber, int accountBalance)
         {
-            this.Amount += amount;
+            return AccountBalance + accountBalance;
 
         }
         // Method DepositMoney takes the value type decimal with the variable name amount
         // then sets the value of ammout to the class variable Amount using this.
         // for the global scoop
 
-        public bool WithdrawMoney(decimal amount)
+        public bool WithdrawMoney(int accountBalance)
         {
-            if ((this.Amount - amount)>= 0)
+            if ((AccountBalance - accountBalance) >= 0)
             {
-                this.Amount -= amount;
+                AccountBalance -= accountBalance;
                 return true;
             }
             else return false;
@@ -53,18 +51,28 @@ namespace BankApp
 
         public decimal Balance()
         {
-            return Amount;
+            return AccountBalance;
         }
         // Method Balance return Amount
         public decimal CalculateInterest()
         {
-            return (this.Amount * ((decimal)Interest) / 100);
+            return (AccountBalance * ((decimal)Interest) / 100);
+        }
+        public int GetAccountNumber(int accountNumber)
+        {
+            return AccountNumber;
         }
         // Method CalculateInterest Interest conveterd tom decimal /100 and then Interest
         // * Amount and then return the value.
         public string ShowAccount()
         {
-            return $"--Account Information--\nAccount Number: {AccountNumber}\nAccountType: {AccountType}\nTotal Balance: {Balance()}\nTotal interest: {CalculateInterest()}";
+            return $"-- Account Info-- Account Number: {AccountNumber}\nAccountType: {AccountType} - Total Balance: {AccountBalance}\nTotal interest: {CalculateInterest()}";
+            //return $"--Account Information--\nAccount Number: {AccountNumber}\nAccountType: {AccountType}\nTotal Balance: {AccountBalance}\nTotal interest: {CalculateInterest()}";
         }
-    } // Method ShowAccount return AccountNumber, AccountType, Balance and CalculateInterest 
+        public override string ToString()
+        {
+            return string.Format($"-- Account Info-- Account Number: {AccountNumber} - AccountType: {AccountType} - Total Balance: {AccountBalance} - Total interest: {CalculateInterest()}");
+        }
+    }
+
 }
