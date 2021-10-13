@@ -24,20 +24,11 @@ namespace BankApp
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
         //public List<SavingsAccount> SavingAccounts { get; private set; }
-        List<SavingsAccount> SavingAccounts = new List<SavingsAccount>();
-
-
-
-
-
-
-
-
-
+        List<SavingsAccount> SavingsAccounts = new List<SavingsAccount>();
 
         public List<SavingsAccount> GetListOfAccounts()
         {
-            return SavingAccounts;
+            return SavingsAccounts;
         }
 
         public List<Customer> Customers = new List<Customer>();
@@ -53,7 +44,7 @@ namespace BankApp
         }
         public void PrintSavingsAccounts()
         {
-            foreach (var i in SavingAccounts)
+            foreach (var i in SavingsAccounts)
             {
                 Console.WriteLine(i);
             }
@@ -75,13 +66,13 @@ namespace BankApp
             {
 
                 int tempId = 1000;
-                GetListOfAccounts().Add(new SavingsAccount(++tempId, SocialSecurityNumber, 66, "hej", 5));
+                GetListOfAccounts().Add(new SavingsAccount(++tempId, SocialSecurityNumber, 0, "hej", 1));
                 //Console.WriteLine($"TEST TEST {SocialSecurityNumber}");
             }
             else
             {
                 int tempId = GetListOfAccounts().Last().AccountNumber;
-                GetListOfAccounts().Add(new SavingsAccount(++tempId, SocialSecurityNumber, 50, "Saving Account", 0));
+                GetListOfAccounts().Add(new SavingsAccount(++tempId, SocialSecurityNumber, 0, "Saving Account", 1));
                 //Console.WriteLine($"TEST TEST {SocialSecurityNumber}");
             }
         }

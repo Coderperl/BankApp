@@ -24,7 +24,10 @@ namespace BankApp
         public double Interest { get; private set; }
 
         //List<SavingsAccount> SavingAccounts = new List<SavingsAccount>();
+        public SavingsAccount()
+        {
 
+        }
         public SavingsAccount(
             int accountNumber,
             int accountNumberParent,
@@ -32,16 +35,17 @@ namespace BankApp
             string accountType,
             double interest)
         {
-
             AccountNumber = accountNumber;
             AccountNumberParent = accountNumberParent;
             AccountBalance = accountBalance;
             AccountType = "Saving Account";
             Interest = 1;
         }
-        public void DepositMoney(int accountBalance)
+
+        public int DepositMoney(int accountNumber, int accountBalance)
         {
-            this.AccountBalance += accountBalance;
+            return AccountBalance + accountBalance;
+
             //     ? Gör en insättning på konto med kontonummer accountId som tillhör kunden pNr, returnerar true om
             //det gick bra annars false.
         }
@@ -72,15 +76,18 @@ namespace BankApp
         {
             return (AccountBalance * ((decimal)Interest) / 100);
         }
-
+        public int GetAccountNumber(int accountNumber)
+        {
+            return AccountNumber;
+        }
         public string ShowAccount()
         {
-            return $"\nAccount Number: {AccountNumber}\nAccountType: {AccountType}\nTotal Balance: {AccountBalance}\nTotal interest: {CalculateInterest()}";
+            return $"-- Account Info-- Account Number: {AccountNumber}\nAccountType: {AccountType} - Total Balance: {AccountBalance}\nTotal interest: {CalculateInterest()}";
             //return $"--Account Information--\nAccount Number: {AccountNumber}\nAccountType: {AccountType}\nTotal Balance: {AccountBalance}\nTotal interest: {CalculateInterest()}";
         }
         public override string ToString()
         {
-            return string.Format($"\nAccount Number: {AccountNumber} - AccountType: {AccountType}\nTotal Balance: {AccountBalance} - Total interest: {CalculateInterest()}");
+            return string.Format($"-- Account Info-- Account Number: {AccountNumber} - AccountType: {AccountType} - Total Balance: {AccountBalance} - Total interest: {CalculateInterest()}");
         }
     }
 }
