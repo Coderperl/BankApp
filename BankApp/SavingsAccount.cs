@@ -23,9 +23,9 @@ namespace BankApp
        
         // The constructor in the class SavingsAccount
 
-        public int DepositMoney(int accountBalance)
+        public void DepositMoney(int accountBalance)
         {
-            return AccountBalance + accountBalance;
+            AccountBalance += accountBalance;
 
         }
         // Method DepositMoney takes the value type decimal with the variable name amount

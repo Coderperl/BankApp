@@ -80,12 +80,15 @@ namespace BankApp
                         }
 
 
+                        SavingsAccount sa = LoggedIn.GetListOfAccounts().First();
+
+
                         Console.WriteLine($"Logging in as {LoggedIn.FullName}..");
                         Thread.Sleep(1000);
                         Console.Clear();
                         Console.WriteLine("---------------------------------------");
                         Console.WriteLine($"Name: {LoggedIn.FullName}\nSocial Security Number: {LoggedIn.SocialSecurityNumber}");
-                        Console.WriteLine(LoggedIn.GetListOfAccounts().First().ShowAccount()); 
+                        Console.WriteLine(sa.ShowAccount()); 
                         //Console.WriteLine($"Account Number:  {LoggedIn.GetListOfAccounts().First().AccountNumber} Type: {LoggedIn.GetListOfAccounts().First().AccountType}\nBalance: {LoggedIn.GetListOfAccounts().First().AccountBalance}");
                         Console.WriteLine("");
                         Console.WriteLine("Manage Your Account");
@@ -97,6 +100,9 @@ namespace BankApp
                                 Console.WriteLine($"Current Balance: {LoggedIn.GetListOfAccounts().First().ShowAccount()}");
                                 Console.WriteLine("How much do you wanna deposit?");
                                 int deposit = int.Parse(Console.ReadLine());
+                                sa.DepositMoney(deposit);
+                                
+
 
                                
                                 Console.WriteLine($"Added {deposit} into account {LoggedIn.GetListOfAccounts().First().ShowAccount()} which makes it now have a total of {LoggedIn.GetListOfAccounts().First().ShowAccount()}");
