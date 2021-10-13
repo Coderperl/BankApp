@@ -106,9 +106,9 @@ namespace BankApp
             }
             return returnList;
         }
-        public string CloseAccount(long pNr, int accountId, Customer customer)
+        public string CloseAccount(long pNr, int AccountNumber, Customer customer)
         {
-            customer.CloseAccount(pNr, accountId, customer);
+            customer.CloseAccount(pNr, AccountNumber, customer);
             return "";
         }
     }

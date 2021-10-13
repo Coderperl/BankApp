@@ -18,15 +18,9 @@ namespace BankApp
 
 
 
-    public class Customer
-    {
-        public int AccountNumber { get; private set; }
-
-
-    
+   
     public class Customer 
     {
-
         public long SocialSecurityNumber { get; private set; }
         public string FullName => FirstName + " " + LastName;
         public string FirstName { get; private set; }
