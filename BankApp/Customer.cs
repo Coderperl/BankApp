@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BankApp
 {
-
     //Klassen Customer ska hantera följande information:
-    //● Kundens namn
-    //● Personnummer
-    //● En lista med kundens alla konton
+    //? Kundens namn
+    //? Personnummer
+    //? En lista med kundens alla konton
 
     //Man ska till exempel kunna ändra kundens namn samt hämta information
     //om kunden(personnummer, för- och efternamn samt hämta information om
@@ -17,69 +17,67 @@ namespace BankApp
     //BankLogic nedan(BankLogic inkluderar förslag på metoder.Komplettera
     //dessa med fler metoder om det behövs).
 
-    public class Customer 
+    public class Customer
     {
-        public long SocialSecurityNumber { get; private set; }
+        public int SocialSecurityNumber { get; private set; }
         public string FullName => FirstName + " " + LastName;
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
-        private List<SavingsAccount> Accounts { get; set; }
+        //public List<SavingsAccount> SavingAccounts { get; private set; }
+        private List<SavingsAccount> SavingAccounts = new List<SavingsAccount>();
 
         public List<SavingsAccount> GetListOfAccounts()
         {
-            return Accounts;
+            return SavingAccounts;
         }
 
-        public Customer(string FirstName,
-                        string LastName,
-                        long SocialSecurityNumber)
+        public List<Customer> Customers = new List<Customer>();
+
+        public Customer(
+            int socialSecurityNumber,
+            string firstName,
+            string lastName)
         {
-            this.FirstName  = FirstName;
-            this.LastName = LastName;
-            this.SocialSecurityNumber = SocialSecurityNumber;
+            FirstName = firstName;
+            LastName = lastName;
+            SocialSecurityNumber = socialSecurityNumber;
         }
-
-       
-        public void AddSavingsAccount()
+        public void PrintSavingsAccounts()
         {
-
-            Random random = new Random();
-            string empty = "1337"; 
-            
-
-            for (int i = 1; i < 11; i++)
+            foreach (var i in SavingAccounts)
             {
-                // inte färdig
-                
+                Console.WriteLine(i);
             }
-            empty += random.Next(1, 6);
-            
-            
-            //Random som skapar kontonummer
-
-            //For-loopar som kollar att kontunumret inte existerar
-            //Enklast är att köra en while-loop som loopar så länge kontonumret existerar
-            //Se pseudokod under
-
-            //While
-
-            //For i < längd på list
-            //If Accnumber == list[index].Accnumber
-            //Sätt validKonto bool falsk
-            //Breaka ur loopen
-
-            //Else
-            //Sätt validKonto som true och fortsätt loopa
-
-
-            //If validKonto = falskt: Generera nytt accountnumber och försök igen
-
-            //Annars: Lägg till nytt sparkonto
         }
-        public override string ToString()
+        public void ChangeCustomerName(long SocialSecurityNumber, string newName)
         {
-            return string.Format($"");
+            foreach (Customer cust in Customers)
+            {
+                if (cust.SocialSecurityNumber == SocialSecurityNumber)
+                {
+                    cust.FirstName = newName;
+                }
+            }
         }
+
+        public void AddSavingsAccount(int SocialSecurityNumber)
+        {
+            if (GetListOfAccounts().Count == 0)
+            {
+
+                int tempId = 1000;
+                GetListOfAccounts().Add(new SavingsAccount(++tempId, SocialSecurityNumber, 66, "hej", 5));
+                //Console.WriteLine($"TEST TEST {SocialSecurityNumber}");
+            }
+            else
+            {
+                int tempId = GetListOfAccounts().Last().AccountNumber;
+                GetListOfAccounts().Add(new SavingsAccount(++tempId, SocialSecurityNumber, 50, "Saving Account", 0));
+                //Console.WriteLine($"TEST TEST {SocialSecurityNumber}");
+            }
+        }
+
+
     }
 }
 

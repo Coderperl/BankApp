@@ -1,14 +1,12 @@
-﻿
-
-using System;
+﻿using System;
+using System.Collections.Generic;
 
 namespace BankApp
 {
-
-    //● Saldo
-    //● Räntesats
-    //● Kontotyp(Sparkonto)
-    //● Kontonummer(det kan inte finnas flera konton med samma kontonummer).
+    //? Saldo
+    //? Räntesats
+    //? Kontotyp(Sparkonto)
+    //? Kontonummer(det kan inte finnas flera konton med samma kontonummer).
 
     //Man ska kunna utföra transaktioner (insättning/uttag), hämta
     //kontonummer, beräkna ränta(saldo* räntesats/100) samt presentera
@@ -16,72 +14,73 @@ namespace BankApp
     //Implementera metoder som säkerställer ovanstående krav i klassen
     //BankLogic nedan(BankLogic inkluderar förslag på metoder.Komplettera
     //dessa med fler metoder om det behövs).
-  
 
-    public class SavingsAccount 
+    public class SavingsAccount
     {
-        public decimal Amount { get; private set; }
+        public int AccountNumber { get; private set; }
+        public int AccountNumberParent { get; private set; }
+        public int AccountBalance { get; private set; }
         public string AccountType { get; private set; }
         public double Interest { get; private set; }
-        public int AccountNumber { get; private set; }
-        public int AccountBalance { get; private set; }
 
-        public SavingsAccount(decimal Amount,
-                              string AccountType,
-                              double Interest,
-                              int AccountNumber,
-                              int AccountBalance)
+        //List<SavingsAccount> SavingAccounts = new List<SavingsAccount>();
+
+        public SavingsAccount(
+            int accountNumber,
+            int accountNumberParent,
+            int accountBalance,
+            string accountType,
+            double interest)
         {
-            this.AccountNumber = AccountNumber;
-            this.AccountType = AccountType;
-            this.AccountBalance = AccountBalance;
-            this.Amount = Amount;
-            this.Interest = Interest;
+
+            AccountNumber = accountNumber;
+            AccountNumberParent = accountNumberParent;
+            AccountBalance = accountBalance;
+            AccountType = "Saving Account";
+            Interest = 1;
         }
-
-        public void DepositMoney(decimal amount)
+        public void DepositMoney(int accountBalance)
         {
-            this.Amount += amount;
-
-            //     ● Gör en insättning på konto med kontonummer accountId som tillhör kunden pNr, returnerar true om
+            this.AccountBalance += accountBalance;
+            //     ? Gör en insättning på konto med kontonummer accountId som tillhör kunden pNr, returnerar true om
             //det gick bra annars false.
         }
 
-        public bool WithdrawMoney(decimal amount)
+        public bool WithdrawMoney(int accountBalance)
         {
-            if ((this.Amount - amount)>= 0)
+            if ((AccountBalance - accountBalance) >= 0)
             {
-                this.Amount -= amount;
+                AccountBalance -= accountBalance;
                 return true;
-                
             }
             else return false;
-            //● Gör ett uttag på konto med kontonummer accountId som tillhör kunden pNr, returnerar true om det
+            //? Gör ett uttag på konto med kontonummer accountId som tillhör kunden pNr, returnerar true om det
             //gick bra annars false
         }
-        public double InterestRate(int amount)
+
+        public double InterestRate(double interest)
         {
             return Interest;
         }
-        public decimal Balance()
+
+        public decimal ShowAccountBalance(int accountBalance)
         {
-            return Amount;
+            return AccountBalance;
         }
 
         public decimal CalculateInterest()
         {
-            return (this.Amount * ((decimal)Interest) / 100);
+            return (AccountBalance * ((decimal)Interest) / 100);
         }
 
         public string ShowAccount()
         {
-            return AccountNumber + "\t" + AccountType + "\t" + CalculateInterest();
+            return $"\nAccount Number: {AccountNumber}\nAccountType: {AccountType}\nTotal Balance: {AccountBalance}\nTotal interest: {CalculateInterest()}";
+            //return $"--Account Information--\nAccount Number: {AccountNumber}\nAccountType: {AccountType}\nTotal Balance: {AccountBalance}\nTotal interest: {CalculateInterest()}";
         }
-
+        public override string ToString()
+        {
+            return string.Format($"\nAccount Number: {AccountNumber} - AccountType: {AccountType}\nTotal Balance: {AccountBalance} - Total interest: {CalculateInterest()}");
+        }
     }
-    
-    
-
-   
-
 }

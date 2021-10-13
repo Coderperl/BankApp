@@ -1,141 +1,141 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Linq;
 
 namespace BankApp
-
 {
-
     //    BankLogic
     //Klassen BankLogic ska innehålla en lista med alla inlagda kunder.Klassen
     //ska innehålla ett antal publika metoder som hanterar kunder och dess
     //konton(se ovan). Du kommer troligtvis att skapa ett antal hjälpmetoder,
     //privata metoder, men de publika metoderna som ska finnas i BankLogic är
     //följande:
-    test
 
     public class BankLogic
     {
 
-        static List<Customer> Customers = new List<Customer>();
-        public static void PrintCustomers()
+
+        public BankLogic()
+        {
+            AddCustomersMetaData();
+            AddAccountsMetaData();
+            //PrintCustomers();
+            //GetAllCustomers();
+        }
+
+        private int CreateAccNum()
+        {
+            List<SavingsAccount> AllSavingsAccounts = new List<SavingsAccount>();
+
+            foreach (var cust in Customers)
+            {
+                foreach (var acc in cust.GetListOfAccounts())
+                {
+                    AllSavingsAccounts.Add(acc);
+                }
+            }
+
+            var lastAcc = AllSavingsAccounts.Last();
+            return lastAcc.AccountNumber;
+
+        }
+
+        List<Customer> Customers = new List<Customer>();
+        List<SavingsAccount> SavingsAccounts = new List<SavingsAccount>();
+        public void PrintCustomers()
         {
             foreach (var i in Customers)
             {
                 Console.WriteLine(i);
             }
         }
-        public static void Main(string[] args)
+
+        public List<Customer> GetAllCustomers()
         {
+            return Customers;
+        }
+        public List<SavingsAccount> GetAllAccounts()
+        {
+            return SavingsAccounts;
+        }
 
-            //static List<string> GetCustomers()
-            //{
-            //    // Foreach customer in List
-            //    //● Returnerar en List<string> som innehåller en presentation av bankens alla kunder(personnummer
-            //    //och namn)
-            //}
+        public void AddCustomersMetaData()
+        {
+            Customers.Add(new Customer(19900340, "Rolf", "Svensson"));
+            Customers.Add(new Customer(19910740, "Carolin", "Eriksson"));
+            Customers.Add(new Customer(19700340, "Lisa", "Johansson"));
+            Customers.Add(new Customer(19800810, "Sandra", "Ekman"));
+            Customers.Add(new Customer(19550120, "Carl", "Larsson"));
+        }
+        public void AddAccountsMetaData()
+        {
+            SavingsAccounts.Add(new SavingsAccount(1000, 19900340, 88, "Saving Account Metadata", 5));
+            SavingsAccounts.Add(new SavingsAccount(1001, 19910740, 88, "Saving Account Metadata", 5));
+            SavingsAccounts.Add(new SavingsAccount(1002, 19700340, 88, "Saving Account Metadata", 5));
+            SavingsAccounts.Add(new SavingsAccount(1003, 19800810, 88, "Saving Account Metadata", 5));
+            SavingsAccounts.Add(new SavingsAccount(1004, 19550120, 88, "Saving Account Metadata", 5));
+        }
 
-            //Customer Carl = new Customer("Carl", "Johansson", 19931224)
-            //{
-
-
-
-
-            //};
-            //Flytta detta till Customer-klassen istället
-            //SavingsAccount CarlsAccount = new SavingsAccount(19931224)
-            //{
-            //    Amount;
-
-            //}
-
-            for (int i = 1000; i < 1011; i++)
+        public List<string> GetCustomer(long pNr)
+        {
+            Customer c = null;
+            List<string> returnList = new();
+            foreach (var customer in Customers)
             {
-                Console.WriteLine(i);
+                if (pNr == customer.SocialSecurityNumber)
+                {
+                    c = customer;
+                }
             }
 
-           
-
-
-
-
-
+            if (c != null)
+            {
+                returnList.Add($"{c.FullName} {c.SocialSecurityNumber}");
+                foreach (SavingsAccount account in c.GetListOfAccounts())
+                {
+                    returnList.Add(account.ShowAccount());
+                }
+            }
+            return returnList;
         }
-        //public static bool AddCustomer(string name, long pNr)
-        //{
-        //    ● Skapar upp en ny kund med namnet name samt personnumer pNr, kunden skapas endast om det
-        //inte finns någon kund med personnummer pNr.Returnerar true om kund skapades annars
-        //returneras false.
 
-        //var newCustomer = new List<string>();
+        public List<string> RemoveCustomer(long pNr)
+        {
+            //    //? Tar bort kund med personnummer pNr ur banken, alla kundens eventuella konton tas också bort
+            //    //och resultatet returneras.Listan som returneras ska innehålla information om alla konton som togs
+            //    //bort, saldot som kunden får tillbaka samt vad räntan blev.
+            Customer c = null;
+            List<string> returnList = new();
+            foreach (var customer in Customers)
+            {
+                if (pNr == customer.SocialSecurityNumber)
+                {
+                    c = customer;
+                }
+            }
 
+            if (c != null)
+            {
+                returnList.Add($"{c.FullName} {c.SocialSecurityNumber}");
+                foreach (SavingsAccount AccountNumber in c.GetListOfAccounts())
+                {
+                    returnList.Add(AccountNumber.ShowAccount());
+                }
+                decimal sum = 0;
+                decimal interestSum = 0;
+                foreach (SavingsAccount AccountNumber in c.GetListOfAccounts())
+                {
+                    sum = sum + AccountNumber.AccountBalance;
+                    interestSum = interestSum + AccountNumber.CalculateInterest();
+                }
+                //string sumString = $"My total sum is : {sum}.";
+                //string interestString = $"My total interest is : {interestSum}.";
 
-        //Customers.Add(new Customer() { name = "Nils Holgersson", pNr = 9412243876 });
-
-        //Console.WriteLine("Please enter your Firstname, and lastname. ");
-        //name = Console.ReadLine();
-        //Console.WriteLine("Please enter your Social security number");
-        //pNr = long.Parse(Console.ReadLine());
-
-        //if (pNr <= 11)
-        //{
-
-        //}
-        //else
-        //{
-        //    Console.WriteLine("You have made a unvalid input.");
-        //}
-        //foreach (var Cust in Customers)
-        //{
-
-        //}
-
-        //return;
-
-        //public List<string> GetCustomer(long pNr)
-        //{
-        //    //● Returnerar en List<string> som innehåller informationen om kunden inklusive dennes konton.
-        //    //Första platsen i listan är förslagsvis reserverad för kundens namn och personnummer sedan följer
-        //    //informationen om kundens konton.
-        //}
-        ////Klassdesign
-
-        //public bool ChangeCustomerName(String name, long pNr)
-        //{
-        //    //● Byter namn på kund med personnummer pNr till name, returnerar true om namnet ändrades annars
-        //    //returnerar false(om kunden inte fanns).
-        //}
-
-        //public List<string> RemoveCustomer(long pNr)
-        //{
-        //    //● Tar bort kund med personnummer pNr ur banken, alla kundens eventuella konton tas också bort
-        //    //och resultatet returneras.Listan som returneras ska innehålla information om alla konton som togs
-        //    //bort, saldot som kunden får tillbaka samt vad räntan blev.
-        //}
-
-        //public static int AddSavingsAccount(long pNr)
-        //{
-        //    //    ● Skapar ett konto till kund med personnummer pNr, returnerar kontonumret som det skapade kontot
-        //    //fick alternativt returneras –1 om inget konto skapades.
-        //}
-
-        //public static string GetAccount(long pNr, int accountId)
-        //{
-        //    //    ● Returnerar en String som innehåller presentation av kontot med kontonummer accountId som tillhör
-        //    //kunden pNr(kontonummer, saldo, kontotyp, räntesats).
-        //}
-
-
-
-
-        ////Klassdesign
-
-        //public string CloseAccount(long pNr, int accountId)
-        //{
-        //    //● Stänger ett konto med kontonummer accountId som tillhör kunden pNr, presentation av kontots
-        //    //saldo samt ränta på pengarna ska genereras.
-        //}
+                //returnList.Add(sumString);
+                //returnList.Add(interestString);
+                c.GetListOfAccounts().Clear();
+            }
+            return returnList;
+        }
     }
-
 }
-
