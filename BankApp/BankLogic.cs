@@ -38,7 +38,6 @@ namespace BankApp
 
             var lastAcc = SavingsAccounts.Last();
             return lastAcc.AccountNumber;
-
         }
         public void PrintCustomers()
         {
@@ -62,7 +61,6 @@ namespace BankApp
         {
             return SavingsAccounts;
         }
-
         public void AddCustomersMetaData()
         {
             Customers.Add(new Customer(0, "Rolf", "Svensson"));
