@@ -17,29 +17,30 @@ namespace BankApp
     //dessa med fler metoder om det behövs).
 
 
-
+    //Constructor
     public class Customer
     {
         public int AccountNumber { get; private set; }
-
-
-    
-    public class Customer 
-    {
-
         public long SocialSecurityNumber { get; private set; }
-        public string FullName => FirstName + " " + LastName;
+        public string FullName { get; private set; }
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
         public List<SavingsAccount> Accounts { get; private set; }
 
+
+
+       
+
+        //Returns list of accounts
         public List<SavingsAccount> GetListOfAccounts()
         {
             return Accounts;
         }
 
+        //Adds new Customer to Customers list
         public List<Customer> Customers = new List<Customer>();
-
+        
+        //Customer gets firstName, LastName, Social Security Number and Account.
         public Customer(string FirstName,
                         string LastName,
                         long SocialSecurityNumber)
@@ -50,17 +51,19 @@ namespace BankApp
             this.Accounts = new();
         }
 
+        //If Social Security Number Matches with Customer it changes his/her name.
         public void ChangeCustomerName(long SocialSecurityNumber, string newName)
         {
             foreach (Customer cust in Customers)
             {
                 if (cust.SocialSecurityNumber == SocialSecurityNumber)
                 {
-                    cust.FirstName = newName;
+                    cust.FullName = newName;
                 }
             }
         }
 
+        //Adds new Account to Customer by using Social Security Number (person Nummer) Gives every new account a new Account Number.
         public void AddSavingsAccount(long SocialSecurityNumber)
         {
             if (GetListOfAccounts().Count == 0)
@@ -72,9 +75,8 @@ namespace BankApp
                 int tempId = GetListOfAccounts().Last().AccountNumber;
                 GetListOfAccounts().Add(new SavingsAccount(++tempId));
             }
-
-
         }
+        //Finds a account with Account Number and Closes the Account, Prints out the remaining amount and interest.
         public List<string> CloseAccount(long pNr, int AccountNumber, Customer customer)
         {
             foreach (var item in Accounts)
