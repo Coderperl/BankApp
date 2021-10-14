@@ -4,8 +4,6 @@ using System.Linq;
 
 namespace BankApp
 {
-   
-
     public class BankLogic
     {
         // public BankLogic() 
@@ -17,7 +15,7 @@ namespace BankApp
         }
 
         List<Customer> Customers = new List<Customer>();
-        
+
         // public void PrintCustomers()
         // The method prints all the values for Customers, in the list of customers.
         public void PrintCustomers()
@@ -27,6 +25,7 @@ namespace BankApp
                 Console.WriteLine(i);
             }
         }
+
         // public List<Customer> GetAllCustomers()
         // This method gets the list of customers, so it can be initialized in other methods. 
         public List<Customer> GetAllCustomers()
@@ -58,7 +57,6 @@ namespace BankApp
                     c = customer; // If the pNr is the same as the customers SocialSecurityNumber, customer c is created. 
                 }
             }
-
             if (c != null) // If customer c does not exist in the returnList, it adds the FullName of customer, and its socialSecurityNumber.
             {
                 returnList.Add($"{c.FullName} {c.SocialSecurityNumber}");
@@ -84,10 +82,8 @@ namespace BankApp
                     c = customer;// If the pNr is the same as the customers SocialSecurityNumber, customer c is created. 
                 }
             }
-
             if (c != null)// If customer c does not exist in the returnList, it adds the FullName of customer, and its socialSecurityNumber.
             {
-
                 returnList.Add($"{c.FullName} {c.SocialSecurityNumber}");
                 foreach (SavingsAccount account in c.GetListOfAccounts())
                 {
@@ -102,19 +98,18 @@ namespace BankApp
                 }
                 string sumString = $"My total sum is : {sum}.";
                 string interestString = $"My total interest is : {interestSum}.";
-
                 returnList.Add(sumString);
                 returnList.Add(interestString);
                 c.GetListOfAccounts().Clear(); // After it has showed the stringvalues to the list, it then removes the customer from the returnlist. 
             }
             return returnList;
         }
+
         // public string CloseAccount(long pNr, int AccountNumber, Customer customer)
         // This method closes an account to a specific customer. 
         public List<string> CloseAccount(Customer customer, int AccountNumber)
         {
             return customer.CloseAccount(AccountNumber);
-
         }
         public void PrintAccounts()
         {
@@ -126,22 +121,20 @@ namespace BankApp
                 }
             }
         }
-      
-    
+
+        //Createing the MockData for the accounts on launch
         public void AddAccountsMetaData()
         {
             foreach (var Customer in GetAllCustomers())
             {
                 Customer.AddSavingsAccount();
             }
-
             //SavingsAccounts.Add(new SavingsAccount(1000, 0, 9999999, "ADMIN KONTO", 1));
             //SavingsAccounts.Add(new SavingsAccount(1001, 19910740, 0, "Saving Account Metadata", 1));
             //SavingsAccounts.Add(new SavingsAccount(1002, 19700340, 0, "Saving Account Metadata", 1));
             //SavingsAccounts.Add(new SavingsAccount(1003, 19800810, 0, "Saving Account Metadata", 1));
             //SavingsAccounts.Add(new SavingsAccount(1004, 19550120, 0, "Saving Account Metadata", 1));
         }
-
     }
 }
 

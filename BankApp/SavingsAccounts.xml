@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SavingsAccounts>
+  <SavingsAccount>
+    <AccountNumber>1000</AccountNumber>
+    <AccountType>Savings Account</AccountType>
+    <AccountBalance>100</AccountBalance>
+    <Interest>1</Interest>
+  </SavingsAccount>
+  <SavingsAccount>
+    <AccountNumber>1001</AccountNumber>
+    <AccountType>Savings Account</AccountType>
+    <AccountBalance>100</AccountBalance>
+    <Interest>1</Interest>
+  </SavingsAccount>
+  <SavingsAccount>
+    <AccountNumber>1002</AccountNumber>
+    <AccountType>Savings Account</AccountType>
+    <AccountBalance>100</AccountBalance>
+    <Interest>1</Interest>
+  </SavingsAccount>
+  <SavingsAccount>
+    <AccountNumber>1003</AccountNumber>
+    <AccountType>Savings Account</AccountType>
+    <AccountBalance>100</AccountBalance>
+    <Interest>1</Interest>
+  </SavingsAccount>
+</SavingsAccounts>
