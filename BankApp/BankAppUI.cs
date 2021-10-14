@@ -30,7 +30,6 @@ namespace BankApp
                 Console.WriteLine("Choose one of the following options");
                 Console.WriteLine("1. Login");
                 Console.WriteLine("2. Create User");
-                Console.WriteLine("3. XML Test");
                 Console.WriteLine("4. Exit");
                 userInput = Console.ReadLine();
                 switch (userInput)
