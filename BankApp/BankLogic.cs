@@ -13,15 +13,15 @@ namespace BankApp
             AddCustomer();
         }
 
-        List<Customer> Customers = new List<Customer>();
-        List<SavingsAccount> SavingAccounts = new List<SavingsAccount>();
+        List<Customer> ListCustomers = new List<Customer>();
+        //List<SavingsAccount> ListSavingsAccounts = new List<SavingsAccount>();
 
 
         // public void PrintCustomers()
         // The method prints all the values for Customers, in the list of customers.
         public void PrintCustomers()
         {
-            foreach (var i in Customers)
+            foreach (var i in ListCustomers)
             {
                 Console.WriteLine(i);
             }
@@ -33,7 +33,7 @@ namespace BankApp
         {
             Customer c = null;
             List<string> returnList = new();
-            foreach (var customer in Customers)
+            foreach (var customer in ListCustomers)
             {
                 if (pNr == customer.SocialSecurityNumber)
                 {
@@ -55,28 +55,37 @@ namespace BankApp
         // This method gets the list of customers, so it can be initialized in other methods. 
         public List<Customer> GetCustomers()
         {
-            return Customers;
+            return ListCustomers;
         }
 
         // public void AddCustomer()
         // This method adds metadata to the list of customers, it adds the values to the following parameters (FirstName, LastName and SocialSecuritynumber. 
         public void AddCustomer()
         {
-            Customers.Add(new Customer("Rolf", "Svensson", 19900340));
-            Customers.Add(new Customer("Carolin", "Eriksson", 19910740));
-            Customers.Add(new Customer("Lisa", "Johansson", 19700340));
-            Customers.Add(new Customer("Sandra", "Ekman", 19800810));
-            Customers.Add(new Customer("Carl", "Larsson", 19550120));
+            ListCustomers.Add(new Customer("Rolf", "Svensson", 19900340));
+            ListCustomers.Add(new Customer("Carolin", "Eriksson", 19910740));
+            ListCustomers.Add(new Customer("Lisa", "Johansson", 19700340));
+            ListCustomers.Add(new Customer("Sandra", "Ekman", 19800810));
+            ListCustomers.Add(new Customer("Carl", "Larsson", 19550120));
+        }
+        public void CreateCustomer(int createSocialSecurityNumber, string createFirstName, string createLastName)
+        {
+            ListCustomers.Add(new Customer(createFirstName, createLastName, createSocialSecurityNumber));
         }
 
         // public List<string> RemoveCustomer(long pNr)
         // This method removes a customer from the BankApp, all its accounts and then returns a list of information, which contains
-        // the accounts that were removed, the balance of the account, and calculates the interest of the total balance of the account. 
+        // the accounts that were removed, the balance of the account, and calculates the interest of the total balance of the account.
+
+        //public void RemoveCustomer(int removeCustomer)
+        //{
+        //    ListCustomers.RemoveAt(removeCustomer);
+        //}
         public List<string> RemoveCustomer(long pNr)
         {
             Customer c = null;
             List<string> returnList = new();
-            foreach (var customer in Customers)
+            foreach (var customer in ListCustomers)
             {
                 if (pNr == customer.SocialSecurityNumber)
                 {
@@ -85,7 +94,7 @@ namespace BankApp
             }
             if (c != null)// If customer c does not exist in the returnList, it adds the FullName of customer, and its socialSecurityNumber.
             {
-                returnList.Add($"{c.FullName} {c.SocialSecurityNumber}");
+                returnList.Add($"Social Number: {c.SocialSecurityNumber} - Name: {c.FullName}");
                 foreach (SavingsAccount account in c.GetSavingsAccounts())
                 {
                     returnList.Add(account.ShowAccount());
@@ -97,17 +106,18 @@ namespace BankApp
                     sum = sum + account.Balance(); // it shows the sum of the balance of the accounts.
                     interestSum = interestSum + account.CalculateInterest(); // it calculates the interest sum of the total balance of its accounts. 
                 }
-                string sumString = $"My total sum is : {sum}.";
-                string interestString = $"My total interest is : {interestSum}.";
+                string sumString = $"My total balance is: {sum}";
+                string interestString = $"My total interest is: {interestSum}";
                 returnList.Add(sumString);
                 returnList.Add(interestString);
-                c.GetSavingsAccounts().Clear(); // After it has showed the stringvalues to the list, it then removes the customer from the returnlist. 
+                c.GetSavingsAccounts().Clear(); // After it has showed the stringvalues to the list, it then removes the customer from the returnlist.
+                GetCustomers().Remove(c);
             }
             return returnList;
         }
         public void PrintAccounts()
         {
-            foreach (Customer cust in Customers)
+            foreach (Customer cust in ListCustomers)
             {
                 foreach (SavingsAccount account in cust.GetSavingsAccounts())
                 {
@@ -115,16 +125,38 @@ namespace BankApp
                 }
             }
         }
-        public List<SavingsAccount> GetSavingsAccounts()
-        {
-            return SavingAccounts;
-        }
+
 
         // public string CloseAccount(long pNr, int AccountNumber, Customer customer)
         // This method closes an account to a specific customer. 
-        public List<string> RemoveAccount(Customer customer, int AccountNumber)
+        //public void RemoveAccount(int removeAccount)
+        //{
+        //    ListSavingsAccounts.RemoveAt(removeAccount);
+        //}
+
+        //Finds a account with Account Number and Closes the Account, Prints out the remaining amount and interest.
+        public string RemoveSavingsAccount(int SearchResult, int AccountNumber)
         {
-            return customer.RemoveAccount(AccountNumber);
+            Customer c = null;
+            foreach (Customer customer in GetCustomers())
+            {
+                if (customer.SocialSecurityNumber == SearchResult)
+                {
+                    c = customer;
+                }
+            }
+            foreach (SavingsAccount Account in c.GetSavingsAccounts())
+            {
+                if (Account.AccountNumber == AccountNumber)
+                {
+                    string s = Account.ShowAccount();
+                    c.GetSavingsAccounts().Remove(Account);
+                    //ClosedAccount[0] för saldo
+                    //ClosedAccount[1] för ränta
+                    return s;
+                }
+            }
+            return null;
         }
 
         //Createing the MockData for the accounts on launch
@@ -132,7 +164,7 @@ namespace BankApp
         {
             foreach (var Customer in GetCustomers())
             {
-                Customer.AddSavingsAccount();
+                //Customer.AddSavingsAccount();
             }
             //SavingsAccounts.Add(new SavingsAccount(1000, 0, 9999999, "ADMIN KONTO", 1));
             //SavingsAccounts.Add(new SavingsAccount(1001, 19910740, 0, "Saving Account Metadata", 1));

@@ -11,15 +11,14 @@ namespace BankApp
         public string FullName => FirstName + " " + LastName;
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
+
         //public List<SavingsAccount> SavingAccounts { get; private set; }
-        List<SavingsAccount> SavingsAccounts = new List<SavingsAccount>();
-        //Adds new Customer to Customers list
-        public List<Customer> Customers = new List<Customer>();
+        List<SavingsAccount> ListSavingsAccounts = new List<SavingsAccount>();
 
         //Returns list of accounts
         public List<SavingsAccount> GetSavingsAccounts()
         {
-            return SavingsAccounts;
+            return ListSavingsAccounts;
         }
         
         //Customer gets firstName, LastName, Social Security Number and Account.
@@ -30,10 +29,12 @@ namespace BankApp
             this.FirstName = FirstName;
             this.LastName = LastName;
             this.SocialSecurityNumber = SocialSecurityNumber;
+            CreateSavingsAccount();
         }
+
         public void PrintSavingsAccounts()
         {
-            foreach (var i in SavingsAccounts)
+            foreach (var i in ListSavingsAccounts)
             {
                 Console.WriteLine(i);
             }
@@ -64,60 +65,40 @@ namespace BankApp
         //}
         public void ChangeCustomerFirstName(string newFirstName)
         {
-            foreach (Customer cust in Customers)
-            {
-                if (cust.SocialSecurityNumber == SocialSecurityNumber)
-                {
-                    cust.FirstName = newFirstName;
-                }
-            }
+            FirstName = newFirstName;
         }
         public void ChangeCustomerLastName(string newLastName)
         {
-            foreach (Customer cust in Customers)
-            {
-                if (cust.SocialSecurityNumber == SocialSecurityNumber)
-                {
-                    cust.FirstName = newLastName;
-                }
-            }
+            LastName = newLastName;
         }
 
         //Adds new Account to Customer by using Social Security Number (person Nummer) Gives every new account a new Account Number.
-        public void AddSavingsAccount()
+        //public void AddSavingsAccount()
+        //{
+        //    if (GetSavingsAccounts().Count == 0)
+        //    {
+        //        GetSavingsAccounts().Add(new SavingsAccount(3300));
+        //    }
+        //    else
+        //    {
+        //        int tempId = GetSavingsAccounts().Last().AccountNumber;
+        //        GetSavingsAccounts().Add(new SavingsAccount(++tempId));
+        //    }
+        //}
+        public void CreateSavingsAccount()
         {
             if (GetSavingsAccounts().Count == 0)
             {
-                GetSavingsAccounts().Add(new SavingsAccount(1001));
+                ListSavingsAccounts.Add(new SavingsAccount(3300));
             }
             else
             {
                 int tempId = GetSavingsAccounts().Last().AccountNumber;
-                GetSavingsAccounts().Add(new SavingsAccount(++tempId));
+                ListSavingsAccounts.Add(new SavingsAccount(++tempId));
             }
         }
 
-        //Finds a account with Account Number and Closes the Account, Prints out the remaining amount and interest.
-        public List<string> RemoveAccount(int AccountNumber)
-        {
-            foreach (var item in SavingsAccounts)
-            {
-                if (item.AccountNumber == AccountNumber)
-                {
-                    List<string> ClosedAccount = new List<string>();
-                    ClosedAccount.Add($"{item.ShowAccount()}");
-                    SavingsAccounts.Remove(item);
-                    //ClosedAccount[0] för saldo
-                    //ClosedAccount[1] för ränta
-                    return ClosedAccount;
-                }
-            }
-            return null;
-        }
-        public override string ToString()
-        {
-            return string.Format($"Social Number: {SocialSecurityNumber}  FullName: {FullName}\n{GetSavingsAccounts().First()}");
-        }
+
     }
 
 }
