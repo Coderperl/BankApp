@@ -109,7 +109,7 @@ namespace BankApp
                                 Thread.Sleep(1500);
                                 Console.Clear();
                                 Console.WriteLine($"Added {deposit} into account {LoggedIn.GetListOfAccounts().First().AccountNumber} which makes it now have a total of {LoggedIn.GetListOfAccounts().First().AccountBalance}\n");
-                                //Vi kan lägga in pengar men värdena sparar inte i SavingsAccount som går att återhämta
+                               
 
                                 //Console.WriteLine(SavingsAccount.ShowAccount());
                                 //Console.WriteLine($"Added {input} into account {SavingsAccounts[inputSocialSecurityNumber].AccountNumber} which makes it now have a total of {SavingsAccounts[inputSocialSecurityNumber].AccountBalance + input}");
@@ -130,8 +130,8 @@ namespace BankApp
                                 break;
                             case "3":
                                 Console.WriteLine("\nThese are the names you can change");
-                                Console.WriteLine("1. First Name");
-                                Console.WriteLine("2. Last Name");
+                                Console.WriteLine($"1.{LoggedIn.FirstName}");
+                                Console.WriteLine($"2.{LoggedIn.LastName}");
                                 Console.Write("\nWhat is your choice? ");
                                 int inputchangename = int.Parse(Console.ReadLine());
                                 if (inputchangename == 1)
@@ -139,7 +139,11 @@ namespace BankApp
                                     Console.Write("What do you wanna change your First Name to? ");
                                     string changefirstname = Console.ReadLine();
                                     //////////////////////////////////////////////////FUNKER EJ
-                                    BankLogic.GetAllCustomers().First().ChangeCustomerFirstName(inputSocialSecurityNumber, changefirstname);
+                                    ///
+
+                                    
+                                    LoggedIn.ChangeCustomerFirstName(changefirstname);
+                                    //BankLogic.GetAllCustomers().First().ChangeCustomerFirstName(changefirstname);
                                     Console.WriteLine($"{LoggedIn.FullName}");
                                 }
                                 else if (inputchangename == 2)
@@ -147,7 +151,8 @@ namespace BankApp
                                     Console.Write("What do you wanna change your First Name to? ");
                                     string changelastname = Console.ReadLine();
                                     //////////////////////////////////////////////////FUNKER EJ
-                                    BankLogic.GetAllCustomers().First().ChangeCustomerLastName(inputSocialSecurityNumber, changelastname);
+                                    LoggedIn.ChangeCustomerLastName(changelastname);
+                                    //BankLogic.GetAllCustomers().First().ChangeCustomerLastName(changelastname);
                                     Console.WriteLine($"{LoggedIn.FullName}");
                                 }
 

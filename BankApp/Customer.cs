@@ -77,7 +77,7 @@ namespace BankApp
         //        }
         //    }
         //}
-        public void ChangeCustomerFirstName(int SocialSecurityNumber, string newFirstName)
+        public void ChangeCustomerFirstName(string newFirstName)
         {
             foreach (Customer cust in Customers)
             {
@@ -87,7 +87,7 @@ namespace BankApp
                 }
             }
         }
-        public void ChangeCustomerLastName(int SocialSecurityNumber, string newLastName)
+        public void ChangeCustomerLastName(string newLastName)
         {
             foreach (Customer cust in Customers)
             {
