@@ -14,7 +14,7 @@ namespace BankApp
         //public List<SavingsAccount> SavingAccounts { get; private set; }
         List<SavingsAccount> SavingsAccounts = new List<SavingsAccount>();
         //Adds new Customer to Customers list
-        public List<Customer> Customers = new List<Customer>();
+        //List<Customer> Customers = new List<Customer>();
 
         //Returns list of accounts
         public List<SavingsAccount> GetListOfAccounts()
@@ -96,6 +96,7 @@ namespace BankApp
                 GetListOfAccounts().Add(new SavingsAccount(++tempId));
             }
         }
+
         //Finds a account with Account Number and Closes the Account, Prints out the remaining amount and interest.
         public List<string> CloseAccount(int AccountNumber)
         {
@@ -115,7 +116,7 @@ namespace BankApp
         }
         public override string ToString()
         {
-            return string.Format($"Social Number: {SocialSecurityNumber} - FullName: {FullName}\n{GetListOfAccounts().First()}");
+            return string.Format($"Social Number: {SocialSecurityNumber}  FullName: {FullName}\n{GetListOfAccounts().First()}");
         }
     }
 

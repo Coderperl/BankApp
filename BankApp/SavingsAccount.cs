@@ -14,7 +14,7 @@ namespace BankApp
         //Get och set metodes! parameters Amount, AccountType, Interest och AccountNumber
         
         public SavingsAccount(int AccountNumber)        
-        { 
+        {
             this.AccountNumber = AccountNumber;
             this.AccountType = "SavingsAccount";
             this.Interest = 1;

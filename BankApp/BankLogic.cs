@@ -11,10 +11,11 @@ namespace BankApp
         public BankLogic()
         {
             AddCustomer();
-            
         }
 
         List<Customer> Customers = new List<Customer>();
+        List<SavingsAccount> SavingAccounts = new List<SavingsAccount>();
+
 
         // public void PrintCustomers()
         // The method prints all the values for Customers, in the list of customers.
@@ -31,6 +32,10 @@ namespace BankApp
         public List<Customer> GetAllCustomers()
         {
             return Customers;
+        }
+        public List<SavingsAccount> GetAllSavingsAccounts()
+        {
+            return SavingAccounts;
         }
 
         // public void AddCustomer()
