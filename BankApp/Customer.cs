@@ -13,15 +13,14 @@ namespace BankApp
         public string LastName { get; private set; }
         //public List<SavingsAccount> SavingAccounts { get; private set; }
         List<SavingsAccount> SavingsAccounts = new List<SavingsAccount>();
+        //Adds new Customer to Customers list
+        public List<Customer> Customers = new List<Customer>();
 
         //Returns list of accounts
         public List<SavingsAccount> GetListOfAccounts()
         {
             return SavingsAccounts;
         }
-
-        //Adds new Customer to Customers list
-        public List<Customer> Customers = new List<Customer>();
         
         //Customer gets firstName, LastName, Social Security Number and Account.
         public Customer(string FirstName,
@@ -113,6 +112,10 @@ namespace BankApp
                 }
             }
             return null;
+        }
+        public override string ToString()
+        {
+            return string.Format($"Social Number: {SocialSecurityNumber} - FullName: {FullName}\n{GetListOfAccounts().First()}");
         }
     }
 
