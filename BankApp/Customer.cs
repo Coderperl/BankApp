@@ -14,7 +14,7 @@ namespace BankApp
         //public List<SavingsAccount> SavingAccounts { get; private set; }
         List<SavingsAccount> SavingsAccounts = new List<SavingsAccount>();
         //Adds new Customer to Customers list
-        //List<Customer> Customers = new List<Customer>();
+        public List<Customer> Customers = new List<Customer>();
 
         //Returns list of accounts
         public List<SavingsAccount> GetListOfAccounts()

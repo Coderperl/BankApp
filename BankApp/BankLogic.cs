@@ -38,17 +38,6 @@ namespace BankApp
             return SavingAccounts;
         }
 
-        // public void AddCustomer()
-        // This method adds metadata to the list of customers, it adds the values to the following parameters (FirstName, LastName and SocialSecuritynumber. 
-        public void AddCustomer()
-        {
-            Customers.Add(new Customer("Rolf", "Svensson", 19900340));
-            Customers.Add(new Customer("Carolin", "Eriksson", 19910740));
-            Customers.Add(new Customer("Lisa", "Johansson", 19700340));
-            Customers.Add(new Customer("Sandra", "Ekman", 19800810));
-            Customers.Add(new Customer("Carl", "Larsson", 19550120));
-        }
-
         // public List<string> GetCustomer(long pNr)
         // This method fetches a customer from the list of Customers together with the values it has of its account. 
         public List<string> GetCustomer(int pNr)
@@ -71,6 +60,17 @@ namespace BankApp
                 }
             }
             return returnList; // this shows the account on the console.
+        }
+
+        // public void AddCustomer()
+        // This method adds metadata to the list of customers, it adds the values to the following parameters (FirstName, LastName and SocialSecuritynumber. 
+        public void AddCustomer()
+        {
+            Customers.Add(new Customer("Rolf", "Svensson", 19900340));
+            Customers.Add(new Customer("Carolin", "Eriksson", 19910740));
+            Customers.Add(new Customer("Lisa", "Johansson", 19700340));
+            Customers.Add(new Customer("Sandra", "Ekman", 19800810));
+            Customers.Add(new Customer("Carl", "Larsson", 19550120));
         }
 
         // public List<string> RemoveCustomer(long pNr)
