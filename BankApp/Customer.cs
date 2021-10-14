@@ -32,6 +32,8 @@ namespace BankApp
             CreateSavingsAccount();
         }
 
+        // public void PrintSavingsAccounts()
+        // This method Prints the savingsAccount.
         public void PrintSavingsAccounts()
         {
             foreach (var i in ListSavingsAccounts)
@@ -39,65 +41,33 @@ namespace BankApp
                 Console.WriteLine(i);
             }
         }
-        //public void ChangeCustomerName(int SocialSecurityNumber, string newName)
-        //{
-        //    foreach (Customer cust in Customers)
-        //    {
-        //        if (cust.SocialSecurityNumber == SocialSecurityNumber)
-        //        {
-        //            cust.FirstName = newName;
-        //        }
-        //    }
-        //}
 
-        ////If Social Security Number Matches with Customer it changes his/her name.
-        //public void ChangeCustomerName(int SocialSecurityNumber, string newName, string newLastName)
-
-        //{
-        //    foreach (Customer cust in Customers)
-        //    {
-        //        if (cust.SocialSecurityNumber == SocialSecurityNumber)
-        //        {
-        //            cust.FirstName = newName;
-        //            cust.LastName = newLastName;
-        //        }
-        //    }
-        //}
+        //public void ChangeCustomerFirstName(string newFirstName)
+        // This changes the firstname of the customer.
         public void ChangeCustomerFirstName(string newFirstName)
         {
             FirstName = newFirstName;
         }
+        //public void ChangeCustomerLastName (string newLastName)
+        // This changes the LastName of the customer.
         public void ChangeCustomerLastName(string newLastName)
         {
             LastName = newLastName;
         }
 
-        //Adds new Account to Customer by using Social Security Number (person Nummer) Gives every new account a new Account Number.
-        //public void AddSavingsAccount()
-        //{
-        //    if (GetSavingsAccounts().Count == 0)
-        //    {
-        //        GetSavingsAccounts().Add(new SavingsAccount(3300));
-        //    }
-        //    else
-        //    {
-        //        int tempId = GetSavingsAccounts().Last().AccountNumber;
-        //        GetSavingsAccounts().Add(new SavingsAccount(++tempId));
-        //    }
-        //}
+        // This creates the savingsaccount for the list of customers. 
         public void CreateSavingsAccount()
         {
             if (GetSavingsAccounts().Count == 0)
             {
-                ListSavingsAccounts.Add(new SavingsAccount(3300));
+                ListSavingsAccounts.Add(new SavingsAccount(3300)); //Our bank has the accountnumbers baset on the Nordea Clearing Number. 
             }
             else
             {
                 int tempId = GetSavingsAccounts().Last().AccountNumber;
-                ListSavingsAccounts.Add(new SavingsAccount(++tempId));
+                ListSavingsAccounts.Add(new SavingsAccount(++tempId)); // This adds +1 on 3300, to the next created savingsaccount. 
             }
         }
-
 
     }
 

@@ -72,15 +72,8 @@ namespace BankApp
         {
             ListCustomers.Add(new Customer(createFirstName, createLastName, createSocialSecurityNumber));
         }
-
         // public List<string> RemoveCustomer(long pNr)
-        // This method removes a customer from the BankApp, all its accounts and then returns a list of information, which contains
-        // the accounts that were removed, the balance of the account, and calculates the interest of the total balance of the account.
-
-        //public void RemoveCustomer(int removeCustomer)
-        //{
-        //    ListCustomers.RemoveAt(removeCustomer);
-        //}
+        // This method removes a designated customer from the list of customer.
         public List<string> RemoveCustomer(long pNr)
         {
             Customer c = null;
@@ -115,6 +108,8 @@ namespace BankApp
             }
             return returnList;
         }
+        // public void PrintAccounts()
+        // This method prints the account for the list of customers. 
         public void PrintAccounts()
         {
             foreach (Customer cust in ListCustomers)
@@ -126,21 +121,13 @@ namespace BankApp
             }
         }
 
-
-        // public string CloseAccount(long pNr, int AccountNumber, Customer customer)
-        // This method closes an account to a specific customer. 
-        //public void RemoveAccount(int removeAccount)
-        //{
-        //    ListSavingsAccounts.RemoveAt(removeAccount);
-        //}
-
-        //Finds a account with Account Number and Closes the Account, Prints out the remaining amount and interest.
+        //Finds an account with Account Number and Closes the Account, Prints out the remaining amount and interest.
         public string RemoveSavingsAccount(int SearchResult, int AccountNumber)
         {
             Customer c = null;
             foreach (Customer customer in GetCustomers())
             {
-                if (customer.SocialSecurityNumber == SearchResult)
+                if (customer.SocialSecurityNumber == SearchResult) // Finds the customer whos account you want to remove.  
                 {
                     c = customer;
                 }
@@ -149,10 +136,8 @@ namespace BankApp
             {
                 if (Account.AccountNumber == AccountNumber)
                 {
-                    string s = Account.ShowAccount();
-                    c.GetSavingsAccounts().Remove(Account);
-                    //ClosedAccount[0] för saldo
-                    //ClosedAccount[1] för ränta
+                    string s = Account.ShowAccount(); // shows the Account Number, the Account Type, and the total calculated interest of the balance.    
+                    c.GetSavingsAccounts().Remove(Account);// This removes the account.
                     return s;
                 }
             }
@@ -164,13 +149,9 @@ namespace BankApp
         {
             foreach (var Customer in GetCustomers())
             {
-                //Customer.AddSavingsAccount();
+               
             }
-            //SavingsAccounts.Add(new SavingsAccount(1000, 0, 9999999, "ADMIN KONTO", 1));
-            //SavingsAccounts.Add(new SavingsAccount(1001, 19910740, 0, "Saving Account Metadata", 1));
-            //SavingsAccounts.Add(new SavingsAccount(1002, 19700340, 0, "Saving Account Metadata", 1));
-            //SavingsAccounts.Add(new SavingsAccount(1003, 19800810, 0, "Saving Account Metadata", 1));
-            //SavingsAccounts.Add(new SavingsAccount(1004, 19550120, 0, "Saving Account Metadata", 1));
+            
         }
     }
 }

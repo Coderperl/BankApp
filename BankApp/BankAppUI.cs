@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using System.Xml.Linq;
+
 
 namespace BankApp
 {
@@ -133,7 +132,7 @@ namespace BankApp
                                         LoggedInCustomer.ChangeCustomerLastName(changelastname);
                                         Console.WriteLine($"{LoggedInCustomer.LastName}");
                                     }
-                                    Thread.Sleep(1500);
+                                    Thread.Sleep(3000);
                                     break;
                                 case 4:
                                     //Create SavingsAccount
@@ -141,7 +140,6 @@ namespace BankApp
                                     break;
                                 case 5:
                                     //Remove SavingsAccount
-                                    ///////////////////////////////////////////////////foreach som kollar
                                     Console.Clear();
                                     Console.WriteLine("--Accounts--");
                                     foreach (var item in LoggedInCustomer.GetSavingsAccounts())
@@ -153,13 +151,11 @@ namespace BankApp
                                     int removeAtIndex2 = int.Parse(Console.ReadLine());
                                     if (removeAtIndex2 != 0)
                                     {
-                                        //BankLogic.RemoveAccount(3300);
-
                                         Console.WriteLine(BankLogic.RemoveSavingsAccount(LoggedInCustomer.SocialSecurityNumber, removeAtIndex2));
-                                        Thread.Sleep(1500);
+                                        Thread.Sleep(3000);
                                         Console.Clear();
                                     }
-                                    Thread.Sleep(1500);
+                                    Thread.Sleep(3000);
                                     Console.Clear();
                                     break;
                                 case 0:

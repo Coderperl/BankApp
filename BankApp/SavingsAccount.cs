@@ -72,7 +72,7 @@ namespace BankApp
         public string ShowAccount()
         {
             return $"Account Number: {AccountNumber}     Account Type: {AccountType}\nCurrent Balance: {AccountBalance}       Total Interest: {CalculateInterest()}";
-            //return $"--Account Information--\nAccount Number: {AccountNumber}\nAccountType: {AccountType}\nTotal Balance: {AccountBalance}\nTotal interest: {CalculateInterest()}";
+            
         }
         public override string ToString()
         {
