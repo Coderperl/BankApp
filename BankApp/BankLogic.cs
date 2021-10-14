@@ -27,17 +27,6 @@ namespace BankApp
             }
         }
 
-        // public List<Customer> GetAllCustomers()
-        // This method gets the list of customers, so it can be initialized in other methods. 
-        public List<Customer> GetAllCustomers()
-        {
-            return Customers;
-        }
-        public List<SavingsAccount> GetAllSavingsAccounts()
-        {
-            return SavingAccounts;
-        }
-
         // public List<string> GetCustomer(long pNr)
         // This method fetches a customer from the list of Customers together with the values it has of its account. 
         public List<string> GetCustomer(int pNr)
@@ -54,12 +43,19 @@ namespace BankApp
             if (c != null) // If customer c does not exist in the returnList, it adds the FullName of customer, and its socialSecurityNumber.
             {
                 returnList.Add($"{c.FullName} {c.SocialSecurityNumber}");
-                foreach (SavingsAccount account in c.GetListOfAccounts())
+                foreach (SavingsAccount account in c.GetSavingsAccounts())
                 {
                     returnList.Add(account.ShowAccount()); // after customer c gets its string values, it adds an account to the returnList.
                 }
             }
             return returnList; // this shows the account on the console.
+        }
+
+        // public List<Customer> GetAllCustomers()
+        // This method gets the list of customers, so it can be initialized in other methods. 
+        public List<Customer> GetCustomers()
+        {
+            return Customers;
         }
 
         // public void AddCustomer()
@@ -90,13 +86,13 @@ namespace BankApp
             if (c != null)// If customer c does not exist in the returnList, it adds the FullName of customer, and its socialSecurityNumber.
             {
                 returnList.Add($"{c.FullName} {c.SocialSecurityNumber}");
-                foreach (SavingsAccount account in c.GetListOfAccounts())
+                foreach (SavingsAccount account in c.GetSavingsAccounts())
                 {
                     returnList.Add(account.ShowAccount());
                 }
                 decimal sum = 0;
                 decimal interestSum = 0;
-                foreach (SavingsAccount account in c.GetListOfAccounts())
+                foreach (SavingsAccount account in c.GetSavingsAccounts())
                 {
                     sum = sum + account.Balance(); // it shows the sum of the balance of the accounts.
                     interestSum = interestSum + account.CalculateInterest(); // it calculates the interest sum of the total balance of its accounts. 
@@ -105,32 +101,36 @@ namespace BankApp
                 string interestString = $"My total interest is : {interestSum}.";
                 returnList.Add(sumString);
                 returnList.Add(interestString);
-                c.GetListOfAccounts().Clear(); // After it has showed the stringvalues to the list, it then removes the customer from the returnlist. 
+                c.GetSavingsAccounts().Clear(); // After it has showed the stringvalues to the list, it then removes the customer from the returnlist. 
             }
             return returnList;
-        }
-
-        // public string CloseAccount(long pNr, int AccountNumber, Customer customer)
-        // This method closes an account to a specific customer. 
-        public List<string> CloseAccount(Customer customer, int AccountNumber)
-        {
-            return customer.CloseAccount(AccountNumber);
         }
         public void PrintAccounts()
         {
             foreach (Customer cust in Customers)
             {
-                foreach (SavingsAccount account in cust.GetListOfAccounts())
+                foreach (SavingsAccount account in cust.GetSavingsAccounts())
                 {
                     Console.WriteLine(account.ShowAccount());
                 }
             }
         }
+        public List<SavingsAccount> GetSavingsAccounts()
+        {
+            return SavingAccounts;
+        }
+
+        // public string CloseAccount(long pNr, int AccountNumber, Customer customer)
+        // This method closes an account to a specific customer. 
+        public List<string> RemoveAccount(Customer customer, int AccountNumber)
+        {
+            return customer.RemoveAccount(AccountNumber);
+        }
 
         //Createing the MockData for the accounts on launch
         public void AddAccountsMetaData()
         {
-            foreach (var Customer in GetAllCustomers())
+            foreach (var Customer in GetCustomers())
             {
                 Customer.AddSavingsAccount();
             }

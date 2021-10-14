@@ -17,7 +17,7 @@ namespace BankApp
         public List<Customer> Customers = new List<Customer>();
 
         //Returns list of accounts
-        public List<SavingsAccount> GetListOfAccounts()
+        public List<SavingsAccount> GetSavingsAccounts()
         {
             return SavingsAccounts;
         }
@@ -86,19 +86,19 @@ namespace BankApp
         //Adds new Account to Customer by using Social Security Number (person Nummer) Gives every new account a new Account Number.
         public void AddSavingsAccount()
         {
-            if (GetListOfAccounts().Count == 0)
+            if (GetSavingsAccounts().Count == 0)
             {
-                GetListOfAccounts().Add(new SavingsAccount(1001));
+                GetSavingsAccounts().Add(new SavingsAccount(1001));
             }
             else
             {
-                int tempId = GetListOfAccounts().Last().AccountNumber;
-                GetListOfAccounts().Add(new SavingsAccount(++tempId));
+                int tempId = GetSavingsAccounts().Last().AccountNumber;
+                GetSavingsAccounts().Add(new SavingsAccount(++tempId));
             }
         }
 
         //Finds a account with Account Number and Closes the Account, Prints out the remaining amount and interest.
-        public List<string> CloseAccount(int AccountNumber)
+        public List<string> RemoveAccount(int AccountNumber)
         {
             foreach (var item in SavingsAccounts)
             {
@@ -116,7 +116,7 @@ namespace BankApp
         }
         public override string ToString()
         {
-            return string.Format($"Social Number: {SocialSecurityNumber}  FullName: {FullName}\n{GetListOfAccounts().First()}");
+            return string.Format($"Social Number: {SocialSecurityNumber}  FullName: {FullName}\n{GetSavingsAccounts().First()}");
         }
     }
 

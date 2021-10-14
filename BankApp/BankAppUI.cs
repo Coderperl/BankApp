@@ -21,7 +21,7 @@ namespace BankApp
             BankLogic.AddAccountsMetaData();
 
             //Loading our lists
-            List<Customer> Customers = BankLogic.GetAllCustomers();
+            List<Customer> Customers = BankLogic.GetCustomers();
             List<SavingsAccount> SavingsAccounts = new List<SavingsAccount>();
 
             //Big while meny
@@ -38,7 +38,7 @@ namespace BankApp
                         Console.Clear();
                         Console.WriteLine("--Users and their accounts--");
                         //prints our currently users and their accounts though method PrintSavingsAccounts();
-                        foreach (Customer i in BankLogic.GetAllCustomers())
+                        foreach (Customer i in BankLogic.GetCustomers())
                         {
                             long index = i.SocialSecurityNumber;
                             Console.WriteLine($"Social Number: {i.SocialSecurityNumber}  Name: {i.FirstName} {i.LastName}");
@@ -52,7 +52,7 @@ namespace BankApp
                         if (inputSocialSecurityNumber != 0)
                         {
                             Customer LoggedIn = null;
-                            foreach (Customer i in BankLogic.GetAllCustomers())
+                            foreach (Customer i in BankLogic.GetCustomers())
                             {
                                 if (i.SocialSecurityNumber == inputSocialSecurityNumber)
                                 {
@@ -60,7 +60,7 @@ namespace BankApp
                                 }
                             }
                             //Makes so you load SocialSecurityNumber instead of the index the users where input as
-                            SavingsAccount sa = LoggedIn.GetListOfAccounts().First();
+                            SavingsAccount sa = LoggedIn.GetSavingsAccounts().First();
                             Console.WriteLine($"Logging in as {LoggedIn.FullName}..");
                             Thread.Sleep(1500);
                             Console.Clear();
@@ -84,7 +84,7 @@ namespace BankApp
                                     Console.Write("How much do you wanna deposit? ");
                                     int deposit = int.Parse(Console.ReadLine());
                                     sa.DepositMoney(deposit);
-                                    Console.WriteLine($"Added {deposit} into account {LoggedIn.GetListOfAccounts().First().AccountNumber} which makes it now have a total of {LoggedIn.GetListOfAccounts().First().AccountBalance}");
+                                    Console.WriteLine($"Added {deposit} into account {LoggedIn.GetSavingsAccounts().First().AccountNumber} which makes it now have a total of {LoggedIn.GetSavingsAccounts().First().AccountBalance}");
                                     Thread.Sleep(1500);
                                     break;
                                 case 2:
@@ -92,7 +92,7 @@ namespace BankApp
                                     Console.Write("How much do you wanna withdrawal? ");
                                     int withdrawal = int.Parse(Console.ReadLine());
                                     sa.WithdrawMoney(withdrawal);
-                                    Console.WriteLine($"Added {withdrawal} into account {LoggedIn.GetListOfAccounts().First().AccountNumber} which makes it now have a total of {LoggedIn.GetListOfAccounts().First().AccountBalance}");
+                                    Console.WriteLine($"Added {withdrawal} into account {LoggedIn.GetSavingsAccounts().First().AccountNumber} which makes it now have a total of {LoggedIn.GetSavingsAccounts().First().AccountBalance}");
                                     Thread.Sleep(1500);
                                     //Vi kan lägga in pengar men värdena sparar inte i SavingsAccount som går att återhämta
                                     break;
@@ -130,7 +130,7 @@ namespace BankApp
                                     Console.WriteLine("2. ??");
                                     Console.Write("\nWhich do you wanna close? ");
                                     int inputcloseaccount = int.Parse(Console.ReadLine());
-                                    Console.WriteLine($"Closed your bank account with id {"??"} into account {LoggedIn.GetListOfAccounts().First().AccountNumber} which makes it now have a total of {LoggedIn.GetListOfAccounts().First().AccountBalance}\n");
+                                    Console.WriteLine($"Closed your bank account with id {"??"} into account {LoggedIn.GetSavingsAccounts().First().AccountNumber} which makes it now have a total of {LoggedIn.GetSavingsAccounts().First().AccountBalance}\n");
                                     Thread.Sleep(1500);
                                     break;
                                 case 0:
@@ -171,11 +171,11 @@ namespace BankApp
                         string createUserLastName = Console.ReadLine();
                         Console.WriteLine("Social Security Number: ");
                         int createUserSocialSecurityNumber = int.Parse(Console.ReadLine());
-                        BankLogic.GetAllCustomers().Add(new Customer(createUserFirstName, createUserLastName, createUserSocialSecurityNumber));
+                        BankLogic.GetCustomers().Add(new Customer(createUserFirstName, createUserLastName, createUserSocialSecurityNumber));
                         //BankLogic.GetAllSavingsAccounts().Add(new SavingsAccount(55000));
                         Console.Clear();
                         Console.WriteLine("--Users and their accounts--");
-                        foreach (Customer i in BankLogic.GetAllCustomers())
+                        foreach (Customer i in BankLogic.GetCustomers())
                         {
                             int index = i.SocialSecurityNumber;
                             Console.WriteLine($"Social Number: {i.SocialSecurityNumber}  Name: {i.FirstName} {i.LastName}");
@@ -184,98 +184,6 @@ namespace BankApp
                         }
                         break;
                     case 3:
-                        string testIndex = Console.ReadLine();
-                        if (testIndex == "1")
-                        {
-                            /////////////////////////////////////////////
-                            //Testing loading addToFileCustomers from XML file
-                            var addToFileCustomers = new XElement("Customers",
-                                                     new XElement("Customer",
-                                                        new XElement("SocialSecurityNumber", "252525"),
-                                                        new XElement("FirstName", "Philip1"),
-                                                        new XElement("LastName", "Hero1"),
-                                                        new XElement("FullName", "Philip1 Hero1")),
-                                                     new XElement("Customer",
-                                                        new XElement("SocialSecurityNumber", "2525251"),
-                                                        new XElement("FirstName", "Philip2"),
-                                                        new XElement("LastName", "Hero2"),
-                                                        new XElement("FullName", "Philip2 Hero2")),
-                                                     new XElement("Customer",
-                                                        new XElement("SocialSecurityNumber", "2525252"),
-                                                        new XElement("FirstName", "Philip3"),
-                                                        new XElement("LastName", "Hero3"),
-                                                        new XElement("FullName", "Philip3 Hero3")),
-                                                     new XElement("Customer",
-                                                        new XElement("SocialSecurityNumber", "2525253"),
-                                                        new XElement("FirstName", "Philip4"),
-                                                        new XElement("LastName", "Hero4"),
-                                                        new XElement("FullName", "Philip4 Hero4")));
-
-                            File.WriteAllText(@"C:\Users\PhilipHero\Source\Repos\BankApp2\BankApp\Customers.xml", addToFileCustomers.ToString());
-
-                            /////////////////////////////////////////////
-                            //Testing loading savingsAccountsData from XML file
-                            var addToFileSavingsAccounts = new XElement("SavingsAccounts",
-                                         new XElement("SavingsAccount",
-                                            new XElement("AccountNumber", 1000),
-                                            new XElement("AccountType", "Saving Account"),
-                                            new XElement("AccountBalance", 100),
-                                            new XElement("Interest", 1)),
-                                         new XElement("SavingsAccount",
-                                            new XElement("AccountNumber", 1001),
-                                            new XElement("AccountType", "Saving Account"),
-                                            new XElement("AccountBalance", 100),
-                                            new XElement("Interest", 1)),
-                                         new XElement("SavingsAccount",
-                                            new XElement("AccountNumber", 1001),
-                                            new XElement("AccountType", "Saving Account"),
-                                            new XElement("AccountBalance", 100),
-                                            new XElement("Interest", 1)),
-                                         new XElement("SavingsAccount",
-                                            new XElement("AccountNumber", 1002),
-                                            new XElement("AccountType", "Saving Account"),
-                                            new XElement("AccountBalance", 100),
-                                            new XElement("Interest", 1)));
-
-                            File.WriteAllText(@"C:\Users\PhilipHero\Source\Repos\BankApp2\BankApp\SavingsAccounts.xml", addToFileSavingsAccounts.ToString());
-
-                            /////////////////////////////////////////////
-                            //Testing loading customersData from XML file
-                            var customersFilePath = @"C:\Users\PhilipHero\Source\Repos\BankApp2\BankApp\Customers.xml";
-                            var customersData = XElement.Load(customersFilePath);
-                            var realCustomersData = customersData.Descendants("Customer").Where(st => (int)st.Element("SocialSecurityNumber") == 252525);
-                            foreach (var customer in realCustomersData)
-                            {
-                                Console.WriteLine($"Gathering Data: {customer.Element("SocialSecurityNumber")}");
-                                Console.WriteLine($"Gathering Data: {customer.Element("FirstName")}");
-                                Console.WriteLine($"Gathering Data: {customer.Element("LastName")}");
-                                Console.WriteLine($"Gathering Data: {customer.Element("FullName")}");
-
-                                var marks = customer.Descendants("SocialSecurityNumber");
-                                foreach (var item in marks)
-                                {
-                                    Console.WriteLine($"SocialSecurityNumber: {item.Value}\n");
-                                }
-                            }
-                            /////////////////////////////////////////////
-                            //Testing loading savingsAccountsData from XML file
-                            var savingsAccountsFilePath = @"C:\Users\PhilipHero\Source\Repos\BankApp2\BankApp\SavingsAccounts.xml";
-                            var savingsAccountsData = XElement.Load(savingsAccountsFilePath);
-                            var realSavingsAccountsData = savingsAccountsData.Descendants("SavingsAccount").Where(st => (int)st.Element("AccountNumber") == 1000);
-                            foreach (var savingsaccount in realSavingsAccountsData)
-                            {
-                                Console.WriteLine($"Gathering Data: {savingsaccount.Element("AccountNumber")}");
-                                Console.WriteLine($"Gathering Data: {savingsaccount.Element("AccountType")}");
-                                Console.WriteLine($"Gathering Data: {savingsaccount.Element("AccountBalance")}");
-                                Console.WriteLine($"Gathering Data: {savingsaccount.Element("Interest")}");
-
-                                var marks = savingsaccount.Descendants("AccountNumber");
-                                foreach (var item in marks)
-                                {
-                                    Console.WriteLine($"AccountNumber: {item.Value}\n");
-                                }
-                            }
-                        }
                         break;
                     case 4:
                         loggedIn = true;
