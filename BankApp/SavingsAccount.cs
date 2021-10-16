@@ -34,12 +34,14 @@ namespace BankApp
 
         public bool WithdrawMoney(int accountBalance)
         {
-            if ((AccountBalance - accountBalance) >= 0)
+            if ((AccountBalance - accountBalance) >= 0 ) 
             {
                 AccountBalance -= accountBalance;
+                
                 return true;
             }
             else return false;
+           
            
         }
         //Method WithdrawMoney takes the value type type decimal whit the variable name amount

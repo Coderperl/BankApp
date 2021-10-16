@@ -110,8 +110,17 @@ namespace BankApp
                                     Console.Write("How much do you want withdrawal? ");
                                     int withdrawal = int.Parse(Console.ReadLine());
                                     sa.WithdrawMoney(withdrawal);
-                                    Console.WriteLine($"Added {withdrawal} into account {LoggedInCustomer.GetSavingsAccounts().First().AccountNumber} which makes it now have a total of {LoggedInCustomer.GetSavingsAccounts().First().AccountBalance}");
-                                    Thread.Sleep(1500);
+                                    if (withdrawal > sa.AccountBalance)
+                                    {
+                                        sa.AccountBalance -= sa.AccountBalance; // If funds arent currently available on the account it prints "Insufficient funds, Please try again".
+                                        Console.WriteLine("Insufficient funds, Please try again. ");
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine($"Added {withdrawal} into account {LoggedInCustomer.GetSavingsAccounts().First().AccountNumber} which makes it now have a total of {LoggedInCustomer.GetSavingsAccounts().First().AccountBalance}");
+
+                                    }
+                                    Thread.Sleep(2000);
                                     //Vi kan lägga in pengar men värdena sparar inte i SavingsAccount som går att återhämta
                                     break;
                                 case 3:
