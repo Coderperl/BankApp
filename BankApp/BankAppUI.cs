@@ -18,10 +18,13 @@ namespace BankApp
             string dataText = "data.txt";
 
             BankLogic.AddAccountsMetaData();
+            
 
             //Loading our lists
             List<Customer> ListCustomers = BankLogic.GetCustomers();
             List<SavingsAccount> ListSavingsAccounts = new List<SavingsAccount>();
+            
+            
 
             //Big while meny
             while (loggedIn == false)
@@ -45,9 +48,10 @@ namespace BankApp
                             i.PrintSavingsAccounts();
                             Console.WriteLine("");
                         }
-                        //What user you wanna login as
+                        //What user you want login as
                         Console.WriteLine($"0. Return to Menu");
-                        Console.Write("What user do you wanna login as? ");
+                        Console.Write("What user do you want login as? ");
+                        Console.WriteLine("Please enter your SocialSecurity Number.");
                         int inputSocialSecurityNumber = int.Parse(Console.ReadLine());
                         if (inputSocialSecurityNumber != 0)
                         {
@@ -74,7 +78,7 @@ namespace BankApp
                                 {
                                     Console.WriteLine($"SavingsAccount: {item.AccountNumber} - Balance: {item.AccountBalance} - Type: {item.AccountType}");
                                 }
-                                Console.WriteLine("\nWhich SavingsAccount do you wanna select?");
+                                Console.WriteLine("\nWhich SavingsAccount do you want select?");
                                 int LoggedInSavingsAccount = int.Parse(Console.ReadLine());
                                 sa = LoggedInCustomer.GetSavingsAccounts().Find(account => account.AccountNumber == LoggedInSavingsAccount);
                             }
@@ -95,7 +99,7 @@ namespace BankApp
                                 //Actual account choices meny
                                 case 1:
                                     //Deposit
-                                    Console.Write("How much do you wanna deposit? ");
+                                    Console.Write("How much do you want deposit? ");
                                     int deposit = int.Parse(Console.ReadLine());
                                     sa.DepositMoney(deposit);
                                     Console.WriteLine($"Added {deposit} into account {LoggedInCustomer.GetSavingsAccounts().First().AccountNumber} which makes it now have a total of {LoggedInCustomer.GetSavingsAccounts().First().AccountBalance}");
@@ -103,7 +107,7 @@ namespace BankApp
                                     break;
                                 case 2:
                                     //Withdrawal
-                                    Console.Write("How much do you wanna withdrawal? ");
+                                    Console.Write("How much do you want withdrawal? ");
                                     int withdrawal = int.Parse(Console.ReadLine());
                                     sa.WithdrawMoney(withdrawal);
                                     Console.WriteLine($"Added {withdrawal} into account {LoggedInCustomer.GetSavingsAccounts().First().AccountNumber} which makes it now have a total of {LoggedInCustomer.GetSavingsAccounts().First().AccountBalance}");
@@ -120,19 +124,19 @@ namespace BankApp
                                     int inputchangename = int.Parse(Console.ReadLine());
                                     if (inputchangename == 1)
                                     {
-                                        Console.Write("What do you wanna change your First Name to? ");
+                                        Console.Write("What do you want change your First Name to? ");
                                         string changefirstname = Console.ReadLine();
                                         LoggedInCustomer.ChangeCustomerFirstName(changefirstname);
                                         Console.WriteLine($"{LoggedInCustomer.FirstName}");
                                     }
                                     else if (inputchangename == 2)
                                     {
-                                        Console.Write("What do you wanna change your Last Name to? ");
+                                        Console.Write("What do you want change your Last Name to? ");
                                         string changelastname = Console.ReadLine();
                                         LoggedInCustomer.ChangeCustomerLastName(changelastname);
                                         Console.WriteLine($"{LoggedInCustomer.LastName}");
                                     }
-                                    Thread.Sleep(3000);
+                                    
                                     break;
                                 case 4:
                                     //Create SavingsAccount
@@ -147,7 +151,8 @@ namespace BankApp
                                         Console.WriteLine($"SavingsAccount: {item.AccountNumber} - Balance: {item.AccountBalance} - Type: {item.AccountType}");
                                     }
                                     Console.WriteLine($"0. Return to Menu");
-                                    Console.Write("Which do you wanna remove? ");
+                                    Console.Write("Which do you want remove? ");
+                                    Console.WriteLine("Please enter your SocialSecurity Number.");
                                     int removeAtIndex2 = int.Parse(Console.ReadLine());
                                     if (removeAtIndex2 != 0)
                                     {
@@ -197,7 +202,6 @@ namespace BankApp
                         Console.WriteLine("Lastname: ");
                         string createUserLastName = Console.ReadLine();
                         BankLogic.CreateCustomer(createUserSocialSecurityNumber, createUserFirstName, createUserLastName);
-                        //BankLogic.GetAllSavingsAccounts().Add(new SavingsAccount(55000));
                         Console.Clear();
                         Console.WriteLine("--Users and their accounts--");
                         foreach (Customer i in BankLogic.GetCustomers())
@@ -221,7 +225,8 @@ namespace BankApp
                         }
 
                         Console.WriteLine($"0. Return to Menu");
-                        Console.Write("Which do you wanna remove? ");
+                        Console.Write("Which user do you want to remove? ");
+                        Console.WriteLine("Please enter your SocialSecurity Number");
                         int removeAtIndex = int.Parse(Console.ReadLine());
                         if (removeAtIndex != 0)
                         {
